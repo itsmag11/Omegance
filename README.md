@@ -7,4 +7,4 @@
     <sup></sup>S-Lab, Nanyang Technological University
 </div>
 
-[Paper]() | [Project Page]()
+[Paper](xx) | [Project Page]()
