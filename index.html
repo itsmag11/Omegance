@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="DESCRIPTION META TAG">
+  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
+  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
+  <meta property="og:url" content="URL OF THE WEBSITE"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>Omegance</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+  <!-- <link href="css/foundation.css" rel="stylesheet" type="text/css" /> -->
+  <link href="css/twentytwenty.css" rel="stylesheet" type="text/css" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+
+  <style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0px 0;
+    }
+    th {
+        background-color: #dcdcdc; /* Light gray for main header */
+    }
+    .section-header {
+        background-color: #dcdcdc; /* Darker gray for section header */
+    }
+
+    .section-title {
+        text-align: center;
+        font-weight: bold;
+        background-color: #dcdcdc; /* Darker gray for section title */
+    }
+    .main-header th, .header-row th {
+        text-align: center; /* Center align text for main headers and header rows */
+    }
+    .centered {
+        text-align: center;
+        vertical-align: middle
+    }
+    .smallTable {  /* Target table with class "myTable" */
+      width: 60%;  /* Set width to 60% */
+      border-collapse: collapse;
+      margin: 20px 0;
+      text-align: center;
+      vertical-align: middle;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .smallTable2 {  /* Target table with class "myTable" */
+      width: 80%;  /* Set width to 60% */
+      border-collapse: collapse;
+      margin: 20px 0;
+      text-align: center;
+      vertical-align: middle;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .smallTable3 {  /* Target table with class "myTable" */
+      width: 100%;  /* Set width to 60% */
+      border-collapse: collapse;
+      margin: 20px 0;
+      text-align: center;
+      vertical-align: middle;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .limited-width-image {
+      max-width: 80%;
+      width: 1000px;  /* Adjust this value to your desired maximum width */
+    }
+    .center-image {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .reduce-top-margin {
+      margin-top: -70px; /* Adjust this value as needed */
+    }
+    body {
+          font-family: Arial, sans-serif;
+          text-align: center;
+          margin: 20px;
+      }
+    #image-container {
+          margin-top: 20px;
+          width: 100%;
+          border: 2px solid #ccc;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+      }
+      
+    #captiona {
+        margin-top: 0px;
+    }
+    #scroll-bar {
+        width: 100%;
+        margin: 10px auto;
+        position: relative;
+    }
+    
+    #image-container img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+    
+    .box-shaddow {
+        padding: 25px 50px;
+        margin: 25px auto;
+        background-color: white;
+        box-shadow: 0px 0px 10px #999;
+        border-radius: 15px;
+    }
+
+    .range-labels {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .range-labels span {
+        font-size: 18px;
+    }
+    .bgsingle {
+        background-color:cornflowerblue
+    }
+    input[type="range"] {
+        width: 100%;
+    }
+    
+    #set_omegaplus .twentytwenty-before-label:before {
+        content: "Original" }
+    #set_omegaplus .twentytwenty-after-label:before {
+        content: "More Details" }
+    #set_omegareduce .twentytwenty-before-label:before {
+        content: "Original" }
+    #set_omegareduce .twentytwenty-after-label:before {
+        content: "Less Details" }
+    #authors {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 20px;
+        }
+    #conference {
+        text-align: center;
+        margin-bottom: 20px;
+        font-style: italic;
+        }
+    #authors a {
+        margin: 0 10px;
+        }
+    
+    table, th, td {
+        border: 0px solid rgb(249, 3, 3);
+        padding-top: 0px;
+        padding-bottom: 0px;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+</style>
+</head>
+<body>
+<div class="container">
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Omegance: A Single Parameter for Various Granularities in Diffusion-Based Synthesis</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://itsmag11.github.io/" target="_blank">Xinyu Hou</a>,</span>
+                <span class="author-block">
+                  <a href="https://zsyoaoa.github.io/" target="_blank">Zongsheng Yue</a>,</span>
+                <span class="author-block">
+                  <a href="https://csxmli2016.github.io/" target="_blank">Xiaoming Li</a>,</span>
+                  <span class="author-block">
+                    <a href="https://www.mmlab-ntu.com/person/ccloy/" target="_blank">Chen Change Loy</a>
+                  </span>
+                  </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block">S-Lab, Nanyang Technological University<br>arXiv, 2024</span>
+                    <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
+                  </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- Arxiv PDF link -->
+                      <!-- <span class="link-block">
+                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span> -->
+
+                  <!-- ArXiv abstract Link -->
+                  <span class="link-block">
+                    <a href="http://arxiv.org/abs/" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+
+                <!-- Supplementary PDF link
+                    <span class="link-block">
+                      <a href="https://entuedu-my.sharepoint.com/:b:/g/personal/xinyu_hou_staff_main_ntu_edu_sg/EVcLbNo4PYRMkPU3C6av5vcBA3igPLn3eAXG58dpbKwjvw?e=kW8gAK" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Supplementary</span>
+                    </a>
+                  </span> -->
+
+                  <!-- Github link -->
+                  <span class="link-block">
+                    <a href="https://github.com/itsmag11/Omegance" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code (Coming soon)</span>
+                  </a>
+                </span>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            In this work, we introduce <B>a single parameter  &omega;</B>, to effectively control granularity in diffusion-based synthesis. This parameter is incorporated during the denoising steps of the diffusion model's reverse process. Our approach does not require model retraining, architectural modifications, or additional computational overhead during inference, yet enables precise control over the level of details in the generated outputs. Moreover, spatial masks or denoising schedules with varying &omega; values can be applied to achieve region-specific or timestep-specific granularity control. 
+                Prior knowledge of image composition from control signals or reference images further facilitates the creation of precise &omega; masks for granularity control on specific objects.
+                To highlight the parameter's role in controlling subtle detail variations, the technique is named <B>Omegance</B>, combining ''omega'' and ''nuance''. Our method demonstrates impressive performance across various image and video synthesis tasks and is adaptable to advanced diffusion models.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+<section class="hero is-small">
+  <div class="hero-body">
+<!-- <div class="row box-shaddow" > -->
+  <!-- <h4 id="captiona" style="margin-bottom: -20px;"><B>Continuous Output Visualization</B></h4> -->
+  <h2 class="title is-3 has-text-centered" style="margin-bottom: -10px;">Continuous Output Visualization</h2>
+    
+    <table>
+      <tr>
+        <td>
+          <div id="image-container">
+            <img id="current-image1" src="" alt="Image">
+          </div>
+        </td>
+        <td>
+          <div id="image-container">
+            <img id="current-image2" src="" alt="Image">
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div id="scroll-bar">
+            <div class="range-labels">
+                <span>&omega; + (Less Detail)</span>
+                <span>&omega;=0</span>
+                <span>&omega; - (More Detail)</span>
+            </div>
+            <input type="range" id="slider1" min="0" max="20" value="10">
+          </div>
+        </td>
+        <td>
+          <div id="scroll-bar">
+            <div class="range-labels">
+              <span>&omega; + (Less Detail)</span>
+              <span>&omega;=0</span>
+              <span>&omega; - (More Detail)</span>
+            </div>
+            <input type="range" id="slider2" min="0" max="20" value="10">
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div id="image-container">
+            <img id="current-image3" src="" alt="Image">
+          </div>
+        </td>
+        <td>
+          <div id="image-container">
+            <img id="current-image4" src="" alt="Image">
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div id="scroll-bar">
+            <div class="range-labels">
+                <span>&omega; + (Less Detail)</span>
+                <span>&omega;=0</span>
+                <span>&omega; - (More Detail)</span>
+            </div>
+            <input type="range" id="slider3" min="0" max="20" value="10">
+          </div>
+        </td>
+        <td>
+          <div id="scroll-bar">
+            <div class="range-labels">
+              <span>&omega; + (Less Detail)</span>
+              <span>&omega;=0</span>
+              <span>&omega; - (More Detail)</span>
+            </div>
+            <input type="range" id="slider4" min="0" max="20" value="10">
+          </div>
+        </td>
+      </tr>
+    </table>
+
+ </div>
+</section>
+
+
+<section class="hero is-small">
+  <div class="hero-body">
+  <h2 class="title is-3 has-text-centered">More Comparisons</h2>
+  <table>
+    <tr>
+      <td>
+        <h4>Less Detail</h4>
+      </td>
+      <td>
+        <h4>More Detail</h4>
+      </td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <td>
+        <div id="set_omegareduce" class="twentytwenty-container">
+          <img src="imgs/comp_img1/original.jpg" />
+          <img src="imgs/comp_img1/detail-.jpg"  />
+        </div>
+      </td>
+      <td>
+        <div id="set_omegaplus" class="twentytwenty-container">
+          <img src="imgs/comp_img1/original.jpg" />
+          <img src="imgs/comp_img1/detail+.jpg" />
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div id="set_omegareduce" class="twentytwenty-container" style="margin-top: 20px;">
+          <img src="imgs/comp_img2/original.jpg"/>
+          <img src="imgs/comp_img2/detail-.jpg"/>
+        </div>
+      </td>
+      <td>
+        <div id="set_omegaplus" class="twentytwenty-container" style="margin-top: 20px;">
+          <img src="imgs/comp_img2/original.jpg" />
+          <img src="imgs/comp_img2/detail+.jpg"/>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+<section class="hero is-small">
+  <div class="hero-body">
+  <!-- <h4 id="captiona" style="margin-top: 0px;"><B>(c) Effects of Omegance in Text-to-Video Generation</B></h4> -->
+  <h2 class="title is-3 has-text-centered">Text-to-Video Results</h2>
+  <table>
+    <tr>
+      <td colspan="2">
+        <h5 style="text-align: center; "><B>Latte:</B> <i>"A cartoon panda in a sparkly bowtie performs a cheerful dance in a bamboo forest."</i></h5>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <img width="100%" src="imgs/t2v/202411091319_002.gif">
+        <h5>Original (&omega; = 0)</h5>
+      </td>
+      <td>
+        <img width="100%" src="imgs/t2v/202411091324_002.gif">
+        <h5>&omega; Increasing</h5>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="2">
+        <h5 style="text-align: center; margin-top: 20px; "><B>AnimateDiff:</B> <i>"A panda surfing in the ocean, realistic, highquality."</i></h5>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <img width="100%" src="imgs/t2v/202410251107_003.gif">
+        <h5>Original (&omega; = 0)</h5>
+      </td>
+      <td>
+        <img width="100%" src="imgs/t2v/202410251114_003.gif">
+        <h5>&omega; Increasing</h5>
+      </td>
+    </tr>
+
+
+  </table>
+
+
+
+  
+
+<section class="hero is-small is-light">
+  <div class="hero-body">
+  <div class="col-md-12">
+      <!-- <h4 id="captiona" style="margin-top: 0px;"><B>(d) Gradio Demo</B></h4> -->
+      <h2 class="title is-3 has-text-centered">Gradio Demo</h2>
+      <h5 style="text-align: center;"><B>Local Control (ControlNet)</B></h5>
+      <video width="100%" controls autoplay>
+          <source src="imgs/gradio_videos/gradio_controlnet.mp4" type="video/mp4">
+      </video>
+  </div>
+
+  <div class="col-md-12" style="margin-top: 15px;">
+      <h5 style="text-align: center; margin-top: 20px;"><B>Global Control</B></h5>
+      <video width="100%" controls autoplay>
+          <source src="imgs/gradio_videos/gradio_global.mp4" type="video/mp4">
+      </video>
+  </div>
+</div>
+
+</div>
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre style="text-align: left;"><code>
+        @article{hou2024omegance,
+          author    = {Hou, Xinyu, and Yue, Zongsheng and Li, Xiaoming and Loy, Chen Change},
+          title     = {{Omegance}: A Single Parameter for Various Granularities in Diffusion-Based Synthesis},
+          journal   = {arXiv preprint arXiv: xxxx.xxxxx},
+          year      = {2024},
+        }
+      </code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+<!--             You are free to borrow the of this website, we just ask that you link back to this page in the footer. <br>  -->
+            This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+<!-- introduce jQuery and Bootstrap JS -->
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // 
+        const images1 = [
+            "./imgs/slider1/img20.jpg",
+            "./imgs/slider1/img19.jpg",
+            "./imgs/slider1/img18.jpg",
+            "./imgs/slider1/img17.jpg",
+            "./imgs/slider1/img16.jpg",
+            "./imgs/slider1/img15.jpg",
+            "./imgs/slider1/img14.jpg",
+            "./imgs/slider1/img13.jpg",
+            "./imgs/slider1/img12.jpg",
+            "./imgs/slider1/img11.jpg",
+            "./imgs/slider1/img10.jpg",
+            "./imgs/slider1/img9.jpg",
+            "./imgs/slider1/img8.jpg",
+            "./imgs/slider1/img7.jpg",
+            "./imgs/slider1/img6.jpg",
+            "./imgs/slider1/img5.jpg",
+            "./imgs/slider1/img4.jpg",
+            "./imgs/slider1/img3.jpg",
+            "./imgs/slider1/img2.jpg",
+            "./imgs/slider1/img1.jpg",
+            "./imgs/slider1/img0.jpg",
+        ];
+        const images2 = [
+            "./imgs/slider2/img20.jpg",
+            "./imgs/slider2/img19.jpg",
+            "./imgs/slider2/img18.jpg",
+            "./imgs/slider2/img17.jpg",
+            "./imgs/slider2/img16.jpg",
+            "./imgs/slider2/img15.jpg",
+            "./imgs/slider2/img14.jpg",
+            "./imgs/slider2/img13.jpg",
+            "./imgs/slider2/img12.jpg",
+            "./imgs/slider2/img11.jpg",
+            "./imgs/slider2/img10.jpg",
+            "./imgs/slider2/img9.jpg",
+            "./imgs/slider2/img8.jpg",
+            "./imgs/slider2/img7.jpg",
+            "./imgs/slider2/img6.jpg",
+            "./imgs/slider2/img5.jpg",
+            "./imgs/slider2/img4.jpg",
+            "./imgs/slider2/img3.jpg",
+            "./imgs/slider2/img2.jpg",
+            "./imgs/slider2/img1.jpg",
+            "./imgs/slider2/img0.jpg",
+        ];
+        const images3 = [
+            "./imgs/slider3/img20.jpg",
+            "./imgs/slider3/img19.jpg",
+            "./imgs/slider3/img18.jpg",
+            "./imgs/slider3/img17.jpg",
+            "./imgs/slider3/img16.jpg",
+            "./imgs/slider3/img15.jpg",
+            "./imgs/slider3/img14.jpg",
+            "./imgs/slider3/img13.jpg",
+            "./imgs/slider3/img12.jpg",
+            "./imgs/slider3/img11.jpg",
+            "./imgs/slider3/img10.jpg",
+            "./imgs/slider3/img9.jpg",
+            "./imgs/slider3/img8.jpg",
+            "./imgs/slider3/img7.jpg",
+            "./imgs/slider3/img6.jpg",
+            "./imgs/slider3/img5.jpg",
+            "./imgs/slider3/img4.jpg",
+            "./imgs/slider3/img3.jpg",
+            "./imgs/slider3/img2.jpg",
+            "./imgs/slider3/img1.jpg",
+            "./imgs/slider3/img0.jpg",
+        ];
+        const images4 = [
+            "./imgs/slider4/img20.jpg",
+            "./imgs/slider4/img19.jpg",
+            "./imgs/slider4/img18.jpg",
+            "./imgs/slider4/img17.jpg",
+            "./imgs/slider4/img16.jpg",
+            "./imgs/slider4/img15.jpg",
+            "./imgs/slider4/img14.jpg",
+            "./imgs/slider4/img13.jpg",
+            "./imgs/slider4/img12.jpg",
+            "./imgs/slider4/img11.jpg",
+            "./imgs/slider4/img10.jpg",
+            "./imgs/slider4/img9.jpg",
+            "./imgs/slider4/img8.jpg",
+            "./imgs/slider4/img7.jpg",
+            "./imgs/slider4/img6.jpg",
+            "./imgs/slider4/img5.jpg",
+            "./imgs/slider4/img4.jpg",
+            "./imgs/slider4/img3.jpg",
+            "./imgs/slider4/img2.jpg",
+            "./imgs/slider4/img1.jpg",
+            "./imgs/slider4/img0.jpg",
+        ];
+        
+
+
+
+        // initialize 
+        const imageElement1 = $('#current-image1');
+        imageElement1.attr('src', images1[10]);
+
+        const imageElement2 = $('#current-image2');
+        imageElement2.attr('src', images2[10]);
+
+        const imageElement3 = $('#current-image3');
+        imageElement3.attr('src', images3[10]);
+
+        const imageElement4 = $('#current-image4');
+        imageElement4.attr('src', images4[10]);
+
+
+        // slider listening
+        $('#slider1').on('input', function () {
+            const index = $(this).val(); //obtain current value
+            imageElement1.attr('src', images1[index]); // update image
+        });
+
+        $('#slider2').on('input', function () {
+            const index = $(this).val(); //obtain current value
+            imageElement2.attr('src', images2[index]); // update image
+        });
+
+        $('#slider3').on('input', function () {
+            const index = $(this).val(); //obtain current value
+            imageElement3.attr('src', images3[index]); // update image
+        });
+4
+        $('#slider4').on('input', function () {
+            const index = $(this).val(); //obtain current value
+            imageElement4.attr('src', images4[index]); // update image
+        });
+    });
+</script>
+<script src="js/jquery.event.move.js"></script>
+<script src="js/jquery.twentytwenty.js"></script>
+<script>
+    $(function(){
+        $(".twentytwenty-container[data-orientation!='vertical']").twentytwenty({default_offset_pct: 0.5});
+    });
+</script>
+
+
+  </body>
+  </html>
