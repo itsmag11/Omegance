@@ -43,7 +43,7 @@ To generate binary mask from user-provided strokes for other tasks, run:
 python gradio_sketch2mask.py
 ```
 
-## Inference with Omegace
+## Inference with Omegance
 
 The inference codes for various applications using Omegance are avaliable. Results will be automatically saved to ```./results/``` directory.
 
