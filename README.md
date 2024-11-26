@@ -7,7 +7,7 @@
     <sup></sup>S-Lab, Nanyang Technological University
 </div>
 
-[Paper]() | [Project Page]()
+[Paper]() | [Project Page](https://itsmag11.github.io/Omegance/)
 
 <img src="./figures/teaser.jpg" width="800px">
 
