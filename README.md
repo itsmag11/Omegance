@@ -8,6 +8,9 @@
 </div>
 
 [Paper]() | [Project Page]()
+
+<img src="./figures/teaser.jpg" width="800px">
+
 </div>
 
 ## Installation
