@@ -7,7 +7,7 @@
     <sup></sup>S-Lab, Nanyang Technological University
 </div>
 
-ICCV 2025
+**ICCV 2025**
 
 [Paper](https://arxiv.org/abs/2411.17769) | [Project Page](https://itsmag11.github.io/Omegance/)
 
