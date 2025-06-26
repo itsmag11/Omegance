@@ -7,11 +7,17 @@
     <sup></sup>S-Lab, Nanyang Technological University
 </div>
 
+ICCV 2025
+
 [Paper](https://arxiv.org/abs/2411.17769) | [Project Page](https://itsmag11.github.io/Omegance/)
 
 <img src="./figures/teaser.jpg" width="800px">
 
 </div>
+
+## TODOs
+- [ ] Release ICCV camera-ready version
+- [ ] Integrate into Huggingface diffusers
 
 ## Installation
 ```
