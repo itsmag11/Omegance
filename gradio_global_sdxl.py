@@ -1,3 +1,10 @@
+"""
+Gradio Demo for Omegance Global Effect Control
+
+This demo showcases the global granularity control capabilities of Omegance
+by allowing users to adjust the Omega parameter and see its effect on image generation.
+"""
+
 import gradio as gr
 from pytorch_lightning import seed_everything
 
@@ -6,6 +13,8 @@ from omegance_schedulers.scheduling_euler_discrete_snrcontrol import EulerDiscre
 from omegance_schedulers.scheduling_ddim_snrcontrol import DDIMSNRControlScheduler
 
 import torch
+
+# Check CUDA availability and clear cache
 torch.cuda.is_available()
 torch.cuda.empty_cache()
 
@@ -14,7 +23,7 @@ with torch.no_grad():
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
-# Create diffusion pipeline, load safetensors model file from project folder (from subfolders: "./"dreamlike-diffusion-1.0.safetensors")
+# Initialize the diffusion pipeline with Omegance scheduler
 model_path = "stabilityai/stable-diffusion-xl-base-1.0"
 scheduler = DDIMSNRControlScheduler.from_pretrained(model_path, subfolder="scheduler")
 pipe = StableDiffusionXLSNRControlPipeline.from_pretrained(
@@ -24,13 +33,24 @@ pipe = StableDiffusionXLSNRControlPipeline.from_pretrained(
         ).to(device)
 
 def generate_image(prompt, seed, omega):
+    """
+    Generate an image using the Omegance pipeline with global Omega control.
+    
+    Args:
+        prompt: Text prompt for image generation
+        seed: Random seed for reproducibility
+        omega: Omega parameter for detail granularity control
+        
+    Returns:
+        Generated PIL image
+    """
     seed_everything(seed)
 
+    # Negative prompt to avoid common artifacts
     negative_prompt = "distorted lines, warped shapes, uneven grid patterns, irregular geometry, misaligned symmetry, low quality, bad quality"
     image = pipe(prompt, negative_prompt=negative_prompt,
                  omega=omega).images[0]
     
-    # Return generated and resized image
     return image
 
 

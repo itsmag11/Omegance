@@ -392,17 +392,25 @@ class DDIMSNRControlScheduler(SchedulerMixin, ConfigMixin):
         device_ = model_output.device
         dtype_ = model_output.dtype
         
-        ## rescale omega
+        ## Omega parameter rescaling
         def logistic_function(x, L=0.95, U=1.05, x_0=0.0, k=1):
-            # L = Lower bound
-            # U = Upper bound
-            # x_0 = Midpoint (x corresponding to y = 1.0)
-            # k = Steepness, can adjust based on preference
+            """
+            Logistic function for mapping user input Omega values to appropriate range
             
+            Args:
+                x: Input Omega value
+                L: Lower bound, default 0.95
+                U: Upper bound, default 1.05  
+                x_0: Midpoint, x value corresponding to y=1.0, default 0.0
+                k: Steepness, controls the steepness of the mapping curve, default 1
+            
+            Returns:
+                Rescaled Omega value in range [L, U]
+            """
             if isinstance(x, torch.Tensor):
                 x = x.to(torch.float).cpu().numpy()
 
-            # new_x = np.sqrt(L + (U - L) / (1 + np.exp(-k * (x - x_0))))
+            # Use logistic function for rescaling: y = L + (U - L) / (1 + exp(-k * (x - x_0)))
             new_x = L + (U - L) / (1 + np.exp(-k * (x - x_0)))
 
             if isinstance(new_x, np.ndarray):
@@ -410,8 +418,9 @@ class DDIMSNRControlScheduler(SchedulerMixin, ConfigMixin):
             
             return new_x
 
+        # Store Omega values before and after rescaling for debugging and visualization
         self.omega_bef_rescale = omega
-        omega = logistic_function(omega, k=0.1)
+        omega = logistic_function(omega, k=0.1)  # Use smaller k value for smoother mapping
         self.omega_aft_rescale = omega
 
         # See formulas (12) and (16) of DDIM paper https://arxiv.org/pdf/2010.02502.pdf
@@ -437,6 +446,9 @@ class DDIMSNRControlScheduler(SchedulerMixin, ConfigMixin):
         # 3. compute predicted original sample from predicted noise also called
         # "predicted x_0" of formula (12) from https://arxiv.org/pdf/2010.02502.pdf
         if self.config.prediction_type == "epsilon":
+            # Core: Apply Omega parameter to noise prediction for detail granularity control
+            # When omega > 1: enhance noise prediction, increase details
+            # When omega < 1: reduce noise prediction, decrease details
             model_output = model_output * omega
             pred_original_sample = (sample - beta_prod_t ** (0.5) * model_output) / alpha_prod_t ** (0.5)
             pred_epsilon = model_output

@@ -1205,27 +1205,38 @@ class StableDiffusionXLSNRControlPipeline(
         self._num_timesteps = len(timesteps)
 
         ## -----------------------------
+        # Omega scheduling strategy setup
+        # Supports two modes: fixed Omega value and dynamic Omega scheduling
         if omega_schedule_type is None:
+            # Mode 1: Fixed Omega value mode
+            # Apply fixed Omega value within specified timestep range
             omega_start_step = int(timesteps[omega_start_step]) if omega_start_step < len(timesteps) else 0
             omega_end_step = int(timesteps[omega_end_step]) if omega_end_step < len(timesteps) else -1
         else:
-            gap_abs = 0.05
+            # Mode 2: Dynamic Omega scheduling mode
+            # Dynamically adjust Omega values during generation based on predefined scheduling strategies
+            gap_abs = 0.05  # Base offset, controls the range of Omega values
+            
             if omega_schedule_type == 'exp1':
+                # Exponential scheduling 1: gradually decrease from high detail to standard detail
                 up = 1.0 + gap_abs
                 omega_schedule = exponential_scheduler_mirrored(up, 1.0, 0.9, self._num_timesteps)
             elif omega_schedule_type == 'exp2':
+                # Exponential scheduling 2: decrease from high detail to low detail, then back to high detail
                 up = 1.0 + gap_abs * 2
                 down = 1.0 - gap_abs * 2
                 omega_schedule = exponential_scheduler_mirrored(up, down, 0.9, self._num_timesteps)
             elif omega_schedule_type == 'cos1':
+                # Cosine scheduling 1: smooth detail changes
                 down = 1.0 - gap_abs
                 omega_schedule = cosine_scheduler_mirrored(1.0, down, self._num_timesteps, 1.5)
             elif omega_schedule_type == 'cos2':
+                # Cosine scheduling 2: more complex detail change patterns
                 up = 1.0 + gap_abs * 2
                 down = 1.0 - gap_abs * 2
                 omega_schedule = cosine_scheduler(up, down, self._num_timesteps, 1.5)
             else:
-                raise ValueError(f"{omega_schedule_type} is not supported.")
+                raise ValueError(f"Unsupported Omega schedule type: {omega_schedule_type}")
         ## -----------------------------
 
         with self.progress_bar(total=num_inference_steps) as progress_bar:
