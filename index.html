@@ -48,6 +48,197 @@
   <script src="static/js/index.js"></script>
 
   <style>
+    /* 添加动画和现代化样式 */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(-100%); }
+      to { transform: translateX(0); }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .pulse-animation {
+      animation: pulse 2s infinite;
+    }
+
+    .slide-in {
+      animation: slideIn 0.6s ease-out;
+    }
+
+    /* 改进的按钮样式 */
+    .modern-button {
+      background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      border-radius: 25px;
+      color: white;
+      padding: 12px 24px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .modern-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    /* 改进的卡片样式 */
+    .feature-card {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      margin: 20px 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* 改进的标题样式 */
+    .gradient-title {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* 移动端响应式设计 */
+    @media screen and (max-width: 768px) {
+      .hero {
+        min-height: 80vh !important;
+        padding: 20px 0 !important;
+      }
+      
+      .title.is-1 {
+        font-size: 2rem !important;
+        line-height: 1.2 !important;
+      }
+      
+      .feature-card {
+        margin: 10px 0 !important;
+        padding: 20px !important;
+      }
+      
+      .columns {
+        margin: 0 !important;
+      }
+      
+      .column {
+        padding: 0.5rem !important;
+      }
+      
+      .tags {
+        flex-direction: column !important;
+        align-items: center !important;
+      }
+      
+      .tag {
+        margin: 5px 0 !important;
+        width: fit-content !important;
+      }
+      
+      .publication-links {
+        flex-direction: column !important;
+        align-items: center !important;
+      }
+      
+      .link-block {
+        margin: 10px 0 !important;
+        width: 100% !important;
+        max-width: 250px !important;
+      }
+      
+      .modern-button {
+        width: 100% !important;
+        padding: 15px 20px !important;
+        font-size: 1rem !important;
+      }
+      
+      #image-container {
+        margin: 10px 0 !important;
+      }
+      
+      .range-labels {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 5px !important;
+      }
+      
+      .range-labels span {
+        font-size: 0.9rem !important;
+      }
+      
+      input[type="range"] {
+        height: 12px !important;
+      }
+      
+      .twentytwenty-container {
+        height: 200px !important;
+      }
+      
+      .twentytwenty-container img {
+        height: 200px !important;
+        object-fit: cover !important;
+      }
+      
+      video {
+        height: 200px !important;
+        object-fit: cover !important;
+      }
+      
+      .is-size-5 {
+        font-size: 1rem !important;
+      }
+      
+      .is-size-3 {
+        font-size: 1.5rem !important;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .hero {
+        min-height: 70vh !important;
+      }
+      
+      .title.is-1 {
+        font-size: 1.5rem !important;
+      }
+      
+      .feature-card {
+        padding: 15px !important;
+      }
+      
+      .modern-button {
+        padding: 12px 15px !important;
+        font-size: 0.9rem !important;
+      }
+      
+      .tag {
+        font-size: 0.8rem !important;
+        padding: 8px 12px !important;
+      }
+    }
+
     table {
         width: 100%;
         border-collapse: collapse;
@@ -199,32 +390,66 @@
 <div class="container">
 
 
-  <section class="hero">
+  <section class="hero" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; align-items: center;">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Omegance: A Single Parameter for Various Granularities in Diffusion-Based Synthesis</h1>
-            <div class="is-size-5 publication-authors">
+            <!-- 添加动画效果和图标 -->
+            <div class="fade-in-up" style="margin-bottom: 30px;">
+              <i class="fas fa-magic" style="font-size: 4rem; color: white; margin-bottom: 20px; display: block;"></i>
+              <h1 class="title is-1 publication-title" style="color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                <span class="gradient-title" style="background: linear-gradient(45deg, #fff, #f0f0f0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                  Omegance
+                </span>
+                <br>
+                <span style="font-size: 0.7em; font-weight: 300;">A Single Parameter for Various Granularities in Diffusion-Based Synthesis</span>
+              </h1>
+            </div>
+            
+            <!-- 添加特色标签 -->
+            <div class="fade-in-up" style="animation-delay: 0.3s; margin: 30px 0;">
+              <div class="tags has-addons is-centered" style="display: inline-flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+                <span class="tag is-large" style="background: rgba(255,255,255,0.2); color: white; border-radius: 20px;">
+                  <i class="fas fa-cog" style="margin-right: 5px;"></i>
+                  Single Parameter Control
+                </span>
+                <span class="tag is-large" style="background: rgba(255,255,255,0.2); color: white; border-radius: 20px;">
+                  <i class="fas fa-palette" style="margin-right: 5px;"></i>
+                  Detail Adjustment
+                </span>
+                <span class="tag is-large" style="background: rgba(255,255,255,0.2); color: white; border-radius: 20px;">
+                  <i class="fas fa-video" style="margin-right: 5px;"></i>
+                  Video Generation
+                </span>
+              </div>
+            </div>
+
+            <div class="is-size-5 publication-authors fade-in-up" style="animation-delay: 0.6s; color: white;">
               <!-- Paper authors -->
               <span class="author-block">
-                <a href="https://itsmag11.github.io/" target="_blank">Xinyu Hou</a>,</span>
+                <a href="https://itsmag11.github.io/" target="_blank" style="color: #ffd700; text-decoration: none; font-weight: 600;">Xinyu Hou</a>,</span>
                 <span class="author-block">
-                  <a href="https://zsyoaoa.github.io/" target="_blank">Zongsheng Yue</a>,</span>
+                  <a href="https://zsyoaoa.github.io/" target="_blank" style="color: #ffd700; text-decoration: none; font-weight: 600;">Zongsheng Yue</a>,</span>
                 <span class="author-block">
-                  <a href="https://csxmli2016.github.io/" target="_blank">Xiaoming Li</a>,</span>
+                  <a href="https://csxmli2016.github.io/" target="_blank" style="color: #ffd700; text-decoration: none; font-weight: 600;">Xiaoming Li</a>,</span>
                   <span class="author-block">
-                    <a href="https://www.mmlab-ntu.com/person/ccloy/" target="_blank">Chen Change Loy</a>
+                    <a href="https://www.mmlab-ntu.com/person/ccloy/" target="_blank" style="color: #ffd700; text-decoration: none; font-weight: 600;">Chen Change Loy</a>
                   </span>
                   </div>
 
-                  <div class="is-size-5 publication-authors">
-                    <span class="author-block">S-Lab, Nanyang Technological University<br>arXiv, 2024</span>
+                  <div class="is-size-5 publication-authors fade-in-up" style="animation-delay: 0.9s; color: white; margin-top: 15px;">
+                    <span class="author-block">
+                      <i class="fas fa-university" style="margin-right: 8px;"></i>
+                      S-Lab, Nanyang Technological University<br>
+                      <i class="fas fa-calendar" style="margin-right: 8px;"></i>
+                      arXiv, 2024
+                    </span>
                     <!-- <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span> -->
                   </div>
 
-                  <div class="column has-text-centered">
-                    <div class="publication-links">
+                  <div class="column has-text-centered fade-in-up" style="animation-delay: 1.2s;">
+                    <div class="publication-links" style="margin-top: 40px;">
                          <!-- Arxiv PDF link -->
                       <!-- <span class="link-block">
                         <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
@@ -237,13 +462,13 @@
                     </span> -->
 
                   <!-- ArXiv abstract Link -->
-                  <span class="link-block">
+                  <span class="link-block" style="margin: 0 10px;">
                     <a href="https://arxiv.org/abs/2411.17769" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
+                    class="external-link button is-normal is-rounded modern-button pulse-animation">
                     <span class="icon">
                       <i class="ai ai-arxiv"></i>
                     </span>
-                    <span>arXiv</span>
+                    <span>Read Paper</span>
                   </a>
                 </span>
 
@@ -259,13 +484,23 @@
                   </span> -->
 
                   <!-- Github link -->
-                  <span class="link-block">
+                  <span class="link-block" style="margin: 0 10px;">
                     <a href="https://github.com/itsmag11/Omegance" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
+                    class="external-link button is-normal is-rounded modern-button">
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
-                    <span>Code</span>
+                    <span>View Code</span>
+                  </a>
+                </span>
+
+                <!-- 添加演示按钮 -->
+                <span class="link-block" style="margin: 0 10px;">
+                  <a href="#demo" class="external-link button is-normal is-rounded modern-button">
+                    <span class="icon">
+                      <i class="fas fa-play"></i>
+                    </span>
+                    <span>Live Demo</span>
                   </a>
                 </span>
 
@@ -279,17 +514,54 @@
   
 
 <!-- Paper abstract -->
-<section class="section hero is-light">
+<section class="section hero is-light" style="padding: 80px 0;">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            In this work, we introduce <B>a single parameter  &omega;</B>, to effectively control granularity in diffusion-based synthesis. This parameter is incorporated during the denoising steps of the diffusion model's reverse process. Our approach does not require model retraining, architectural modifications, or additional computational overhead during inference, yet enables precise control over the level of details in the generated outputs. Moreover, spatial masks or denoising schedules with varying &omega; values can be applied to achieve region-specific or timestep-specific granularity control. 
-                Prior knowledge of image composition from control signals or reference images further facilitates the creation of precise &omega; masks for granularity control on specific objects.
-                To highlight the parameter's role in controlling subtle detail variations, the technique is named <B>Omegance</B>, combining ''omega'' and ''nuance''. Our method demonstrates impressive performance across various image and video synthesis tasks and is adaptable to advanced diffusion models.
-          </p>
+        <div class="feature-card fade-in-up">
+          <div style="text-align: center; margin-bottom: 30px;">
+            <i class="fas fa-lightbulb" style="font-size: 3rem; color: #667eea; margin-bottom: 15px;"></i>
+            <h2 class="title is-3 gradient-title">Key Innovation</h2>
+            <div style="width: 60px; height: 4px; background: linear-gradient(45deg, #667eea, #764ba2); margin: 15px auto; border-radius: 2px;"></div>
+          </div>
+          
+          <div class="content has-text-justified" style="font-size: 1.1em; line-height: 1.8;">
+            <p style="margin-bottom: 25px;">
+              In this work, we introduce <strong style="color: #667eea; font-size: 1.1em;">a single parameter ω</strong> to effectively control granularity in diffusion-based synthesis. This parameter is incorporated during the denoising steps of the diffusion model's reverse process, enabling precise control over the level of details in generated outputs without requiring model retraining, architectural modifications, or additional computational overhead during inference.
+            </p>
+            
+            <div style="background: #f8f9ff; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #667eea;">
+              <p style="margin: 0;">
+                <i class="fas fa-star" style="color: #ffd700; margin-right: 8px;"></i>
+                <strong>Key Advantage:</strong> Spatial masks or denoising schedules with varying ω values can be applied to achieve region-specific or timestep-specific granularity control.
+              </p>
+            </div>
+            
+            <p style="margin-bottom: 25px;">
+              Prior knowledge of image composition from control signals or reference images further facilitates the creation of precise ω masks for granularity control on specific objects. To highlight the parameter's role in controlling subtle detail variations, the technique is named <strong style="color: #764ba2;">Omegance</strong>, combining "omega" and "nuance".
+            </p>
+            
+            <div style="text-align: center; margin-top: 30px;">
+              <div class="tags has-addons is-centered" style="display: inline-flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+                <span class="tag is-medium" style="background: #e8f2ff; color: #667eea; border-radius: 20px;">
+                  <i class="fas fa-check-circle" style="margin-right: 5px;"></i>
+                  No Retraining
+                </span>
+                <span class="tag is-medium" style="background: #f0f8ff; color: #667eea; border-radius: 20px;">
+                  <i class="fas fa-bolt" style="margin-right: 5px;"></i>
+                  Zero Overhead
+                </span>
+                <span class="tag is-medium" style="background: #f8f0ff; color: #764ba2; border-radius: 20px;">
+                  <i class="fas fa-cogs" style="margin-right: 5px;"></i>
+                  Precise Control
+                </span>
+                <span class="tag is-medium" style="background: #fff0f8; color: #764ba2; border-radius: 20px;">
+                  <i class="fas fa-expand-arrows-alt" style="margin-right: 5px;"></i>
+                  Universal
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -298,195 +570,380 @@
 <!-- End paper abstract -->
 
 
-<section class="hero is-small">
+<!-- 添加使用说明部分 -->
+<section class="section hero is-light" style="padding: 60px 0; background: linear-gradient(135deg, #f8f9ff 0%, #e8f2ff 100%);">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="feature-card fade-in-up">
+          <div style="text-align: center; margin-bottom: 40px;">
+            <i class="fas fa-info-circle" style="font-size: 3rem; color: #667eea; margin-bottom: 15px;"></i>
+            <h2 class="title is-3 gradient-title">How to Use Omegance</h2>
+            <div style="width: 60px; height: 4px; background: linear-gradient(45deg, #667eea, #764ba2); margin: 15px auto; border-radius: 2px;"></div>
+          </div>
+          
+          <div class="columns">
+            <div class="column is-one-third">
+              <div style="text-align: center; padding: 20px;">
+                <div style="background: #667eea; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.5rem;">
+                  <i class="fas fa-sliders-h"></i>
+                </div>
+                <h4 style="color: #667eea; margin-bottom: 15px;">Adjust Parameter</h4>
+                <p style="font-size: 0.9em; color: #666;">Use sliders to adjust ω parameter values and see real-time effects</p>
+              </div>
+            </div>
+            
+            <div class="column is-one-third">
+              <div style="text-align: center; padding: 20px;">
+                <div style="background: #764ba2; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.5rem;">
+                  <i class="fas fa-eye"></i>
+                </div>
+                <h4 style="color: #764ba2; margin-bottom: 15px;">Observe Effects</h4>
+                <p style="font-size: 0.9em; color: #666;">Compare image detail changes under different ω values</p>
+              </div>
+            </div>
+            
+            <div class="column is-one-third">
+              <div style="text-align: center; padding: 20px;">
+                <div style="background: #ff6b6b; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.5rem;">
+                  <i class="fas fa-magic"></i>
+                </div>
+                <h4 style="color: #ff6b6b; margin-bottom: 15px;">Apply Technology</h4>
+                <p style="font-size: 0.9em; color: #666;">Apply the technique to your diffusion model projects</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-small" id="demo">
   <div class="hero-body">
 <!-- <div class="row box-shaddow" > -->
   <!-- <h4 id="captiona" style="margin-bottom: -20px;"><B>Continuous Output Visualization</B></h4> -->
-  <h2 class="title is-3 has-text-centered" style="margin-bottom: -10px;">Continuous Output Visualization</h2>
+  <div class="feature-card fade-in-up">
+    <div style="text-align: center; margin-bottom: 30px;">
+      <i class="fas fa-images" style="font-size: 2.5rem; color: #667eea; margin-bottom: 15px;"></i>
+      <h2 class="title is-3 gradient-title">Continuous Output Visualization</h2>
+      <p style="color: #666; font-size: 1.1em; margin-top: 10px;">Drag the sliders below to observe real-time effects of ω parameter on image details</p>
+    </div>
     
-    <table>
-      <tr>
-        <td>
-          <div id="image-container">
-            <img id="current-image1" src="" alt="Image">
+    <div class="columns">
+      <div class="column is-half">
+        <div class="feature-card" style="margin: 10px; padding: 20px;">
+          <h4 style="text-align: center; color: #667eea; margin-bottom: 20px;">
+            <i class="fas fa-image" style="margin-right: 8px;"></i>
+            Sample Image 1
+          </h4>
+          <div id="image-container" style="border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <img id="current-image1" src="" alt="Image" style="transition: all 0.3s ease;">
           </div>
-        </td>
-        <td>
-          <div id="image-container">
-            <img id="current-image2" src="" alt="Image">
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div id="scroll-bar">
-            <div class="range-labels">
-                <span>&omega; + (Less Detail)</span>
-                <span>&omega;=0</span>
-                <span>&omega; - (More Detail)</span>
+          <div id="scroll-bar" style="margin-top: 20px;">
+            <div class="range-labels" style="margin-bottom: 10px;">
+                <span style="color: #ff6b6b; font-weight: 600;">&omega; + (Less Detail)</span>
+                <span style="color: #667eea; font-weight: bold;">&omega;=0 (Original)</span>
+                <span style="color: #4ecdc4; font-weight: 600;">&omega; - (More Detail)</span>
             </div>
-            <input type="range" id="slider1" min="0" max="20" value="10">
+            <input type="range" id="slider1" min="0" max="20" value="10" style="width: 100%; height: 8px; border-radius: 5px; background: linear-gradient(to right, #ff6b6b, #667eea, #4ecdc4); outline: none;">
           </div>
-        </td>
-        <td>
-          <div id="scroll-bar">
-            <div class="range-labels">
-              <span>&omega; + (Less Detail)</span>
-              <span>&omega;=0</span>
-              <span>&omega; - (More Detail)</span>
+        </div>
+      </div>
+      
+      <div class="column is-half">
+        <div class="feature-card" style="margin: 10px; padding: 20px;">
+          <h4 style="text-align: center; color: #764ba2; margin-bottom: 20px;">
+            <i class="fas fa-image" style="margin-right: 8px;"></i>
+            Sample Image 2
+          </h4>
+          <div id="image-container" style="border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <img id="current-image2" src="" alt="Image" style="transition: all 0.3s ease;">
+          </div>
+          <div id="scroll-bar" style="margin-top: 20px;">
+            <div class="range-labels" style="margin-bottom: 10px;">
+              <span style="color: #ff6b6b; font-weight: 600;">&omega; + (Less Detail)</span>
+              <span style="color: #667eea; font-weight: bold;">&omega;=0 (Original)</span>
+              <span style="color: #4ecdc4; font-weight: 600;">&omega; - (More Detail)</span>
             </div>
-            <input type="range" id="slider2" min="0" max="20" value="10">
+            <input type="range" id="slider2" min="0" max="20" value="10" style="width: 100%; height: 8px; border-radius: 5px; background: linear-gradient(to right, #ff6b6b, #667eea, #4ecdc4); outline: none;">
           </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div id="image-container">
-            <img id="current-image3" src="" alt="Image">
+        </div>
+      </div>
+    </div>
+    
+    <div class="columns">
+      <div class="column is-half">
+        <div class="feature-card" style="margin: 10px; padding: 20px;">
+          <h4 style="text-align: center; color: #ff6b6b; margin-bottom: 20px;">
+            <i class="fas fa-image" style="margin-right: 8px;"></i>
+            Sample Image 3
+          </h4>
+          <div id="image-container" style="border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <img id="current-image3" src="" alt="Image" style="transition: all 0.3s ease;">
           </div>
-        </td>
-        <td>
-          <div id="image-container">
-            <img id="current-image4" src="" alt="Image">
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div id="scroll-bar">
-            <div class="range-labels">
-                <span>&omega; + (Less Detail)</span>
-                <span>&omega;=0</span>
-                <span>&omega; - (More Detail)</span>
+          <div id="scroll-bar" style="margin-top: 20px;">
+            <div class="range-labels" style="margin-bottom: 10px;">
+                <span style="color: #ff6b6b; font-weight: 600;">&omega; + (Less Detail)</span>
+                <span style="color: #667eea; font-weight: bold;">&omega;=0 (Original)</span>
+                <span style="color: #4ecdc4; font-weight: 600;">&omega; - (More Detail)</span>
             </div>
-            <input type="range" id="slider3" min="0" max="20" value="10">
+            <input type="range" id="slider3" min="0" max="20" value="10" style="width: 100%; height: 8px; border-radius: 5px; background: linear-gradient(to right, #ff6b6b, #667eea, #4ecdc4); outline: none;">
           </div>
-        </td>
-        <td>
-          <div id="scroll-bar">
-            <div class="range-labels">
-              <span>&omega; + (Less Detail)</span>
-              <span>&omega;=0</span>
-              <span>&omega; - (More Detail)</span>
+        </div>
+      </div>
+      
+      <div class="column is-half">
+        <div class="feature-card" style="margin: 10px; padding: 20px;">
+          <h4 style="text-align: center; color: #4ecdc4; margin-bottom: 20px;">
+            <i class="fas fa-image" style="margin-right: 8px;"></i>
+            Sample Image 4
+          </h4>
+          <div id="image-container" style="border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <img id="current-image4" src="" alt="Image" style="transition: all 0.3s ease;">
+          </div>
+          <div id="scroll-bar" style="margin-top: 20px;">
+            <div class="range-labels" style="margin-bottom: 10px;">
+              <span style="color: #ff6b6b; font-weight: 600;">&omega; + (Less Detail)</span>
+              <span style="color: #667eea; font-weight: bold;">&omega;=0 (Original)</span>
+              <span style="color: #4ecdc4; font-weight: 600;">&omega; - (More Detail)</span>
             </div>
-            <input type="range" id="slider4" min="0" max="20" value="10">
+            <input type="range" id="slider4" min="0" max="20" value="10" style="width: 100%; height: 8px; border-radius: 5px; background: linear-gradient(to right, #ff6b6b, #667eea, #4ecdc4); outline: none;">
           </div>
-        </td>
-      </tr>
-    </table>
+        </div>
+      </div>
+    </div>
 
  </div>
 </section>
 
 
-<section class="hero is-small">
+<section class="hero is-small" style="background: linear-gradient(135deg, #f8f9ff 0%, #e8f2ff 100%); padding: 80px 0;">
   <div class="hero-body">
-  <h2 class="title is-3 has-text-centered">More Comparisons</h2>
-  <table>
-    <tr>
-      <td>
-        <h4>Less Detail</h4>
-      </td>
-      <td>
-        <h4>More Detail</h4>
-      </td>
-    </tr>
-  </table>
-  <table>
-    <tr>
-      <td>
-        <div id="set_omegareduce" class="twentytwenty-container">
-          <img src="imgs/comp_img1/original.jpg" />
-          <img src="imgs/comp_img1/detail-.jpg"  />
+    <div class="feature-card fade-in-up">
+      <div style="text-align: center; margin-bottom: 40px;">
+        <i class="fas fa-balance-scale" style="font-size: 3rem; color: #667eea; margin-bottom: 15px;"></i>
+        <h2 class="title is-3 gradient-title">Comparison Results</h2>
+        <p style="color: #666; font-size: 1.1em; margin-top: 10px;">Drag the divider line to compare image effects under different ω parameters</p>
+        <div style="width: 60px; height: 4px; background: linear-gradient(45deg, #667eea, #764ba2); margin: 15px auto; border-radius: 2px;"></div>
+      </div>
+      
+      <div class="columns">
+        <div class="column is-half">
+          <div style="text-align: center; margin-bottom: 20px;">
+            <h4 style="color: #ff6b6b; font-size: 1.2em;">
+              <i class="fas fa-minus-circle" style="margin-right: 8px;"></i>
+              Less Detail (ω +)
+            </h4>
+          </div>
         </div>
-      </td>
-      <td>
-        <div id="set_omegaplus" class="twentytwenty-container">
-          <img src="imgs/comp_img1/original.jpg" />
-          <img src="imgs/comp_img1/detail+.jpg" />
+        <div class="column is-half">
+          <div style="text-align: center; margin-bottom: 20px;">
+            <h4 style="color: #4ecdc4; font-size: 1.2em;">
+              <i class="fas fa-plus-circle" style="margin-right: 8px;"></i>
+              More Detail (ω -)
+            </h4>
+          </div>
         </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div id="set_omegareduce" class="twentytwenty-container" style="margin-top: 20px;">
-          <img src="imgs/comp_img2/original.jpg"/>
-          <img src="imgs/comp_img2/detail-.jpg"/>
+      </div>
+      
+      <div class="columns">
+        <div class="column is-half">
+          <div class="feature-card" style="margin: 10px; padding: 15px; background: #fff5f5; border: 2px solid #ff6b6b;">
+            <div id="set_omegareduce" class="twentytwenty-container" style="border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+              <img src="imgs/comp_img1/original.jpg" style="transition: all 0.3s ease;" />
+              <img src="imgs/comp_img1/detail-.jpg" style="transition: all 0.3s ease;" />
+            </div>
+          </div>
         </div>
-      </td>
-      <td>
-        <div id="set_omegaplus" class="twentytwenty-container" style="margin-top: 20px;">
-          <img src="imgs/comp_img2/original.jpg" />
-          <img src="imgs/comp_img2/detail+.jpg"/>
+        <div class="column is-half">
+          <div class="feature-card" style="margin: 10px; padding: 15px; background: #f0fffe; border: 2px solid #4ecdc4;">
+            <div id="set_omegaplus" class="twentytwenty-container" style="border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+              <img src="imgs/comp_img1/original.jpg" style="transition: all 0.3s ease;" />
+              <img src="imgs/comp_img1/detail+.jpg" style="transition: all 0.3s ease;" />
+            </div>
+          </div>
         </div>
-      </td>
-    </tr>
-  </table>
+      </div>
+      
+      <div class="columns">
+        <div class="column is-half">
+          <div class="feature-card" style="margin: 10px; padding: 15px; background: #fff5f5; border: 2px solid #ff6b6b;">
+            <div id="set_omegareduce" class="twentytwenty-container" style="border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+              <img src="imgs/comp_img2/original.jpg" style="transition: all 0.3s ease;" />
+              <img src="imgs/comp_img2/detail-.jpg" style="transition: all 0.3s ease;" />
+            </div>
+          </div>
+        </div>
+        <div class="column is-half">
+          <div class="feature-card" style="margin: 10px; padding: 15px; background: #f0fffe; border: 2px solid #4ecdc4;">
+            <div id="set_omegaplus" class="twentytwenty-container" style="border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+              <img src="imgs/comp_img2/original.jpg" style="transition: all 0.3s ease;" />
+              <img src="imgs/comp_img2/detail+.jpg" style="transition: all 0.3s ease;" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
 
 
-<section class="hero is-small">
+<section class="hero is-small" style="background: linear-gradient(135deg, #e8f2ff 0%, #f8f9ff 100%); padding: 80px 0;">
   <div class="hero-body">
-  <!-- <h4 id="captiona" style="margin-top: 0px;"><B>(c) Effects of Omegance in Text-to-Video Generation</B></h4> -->
-  <h2 class="title is-3 has-text-centered">Text-to-Video Results</h2>
-  <table>
-    <tr>
-      <td colspan="2">
-        <h5 style="text-align: center; "><B>Latte:</B> <i>"A cartoon panda in a sparkly bowtie performs a cheerful dance in a bamboo forest."</i></h5>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <img width="100%" src="imgs/t2v/202411091319_002.gif">
-        <h5>Original (&omega; = 0)</h5>
-      </td>
-      <td>
-        <img width="100%" src="imgs/t2v/202411091324_002.gif">
-        <h5>&omega; Increasing</h5>
-      </td>
-    </tr>
+    <div class="feature-card fade-in-up">
+      <div style="text-align: center; margin-bottom: 40px;">
+        <i class="fas fa-video" style="font-size: 3rem; color: #667eea; margin-bottom: 15px;"></i>
+        <h2 class="title is-3 gradient-title">Text-to-Video Results</h2>
+        <p style="color: #666; font-size: 1.1em; margin-top: 10px;">Demonstrating the powerful effects of Omegance in video generation</p>
+        <div style="width: 60px; height: 4px; background: linear-gradient(45deg, #667eea, #764ba2); margin: 15px auto; border-radius: 2px;"></div>
+      </div>
+      
+      <!-- Latte 模型结果 -->
+      <div class="feature-card" style="margin: 30px 0; padding: 25px; background: #fff; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1);">
+        <div style="text-align: center; margin-bottom: 25px;">
+          <h4 style="color: #667eea; font-size: 1.3em; margin-bottom: 10px;">
+            <i class="fas fa-robot" style="margin-right: 8px;"></i>
+            Latte Model
+          </h4>
+          <p style="color: #666; font-style: italic; font-size: 1.1em;">
+            "A cartoon panda in a sparkly bowtie performs a cheerful dance in a bamboo forest."
+          </p>
+        </div>
+        
+        <div class="columns">
+          <div class="column is-half">
+            <div style="text-align: center;">
+              <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 15px;">
+                <img width="100%" src="imgs/t2v/202411091319_002.gif" style="transition: all 0.3s ease;">
+              </div>
+              <h5 style="color: #ff6b6b; font-weight: 600;">
+                <i class="fas fa-circle" style="margin-right: 5px; font-size: 0.5em;"></i>
+                Original (ω = 0)
+              </h5>
+            </div>
+          </div>
+          <div class="column is-half">
+            <div style="text-align: center;">
+              <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 15px;">
+                <img width="100%" src="imgs/t2v/202411091324_002.gif" style="transition: all 0.3s ease;">
+              </div>
+              <h5 style="color: #4ecdc4; font-weight: 600;">
+                <i class="fas fa-arrow-up" style="margin-right: 5px;"></i>
+                ω Enhanced
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <tr>
-      <td colspan="2">
-        <h5 style="text-align: center; margin-top: 20px; "><B>AnimateDiff:</B> <i>"A panda surfing in the ocean, realistic, highquality."</i></h5>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <img width="100%" src="imgs/t2v/202410251107_003.gif">
-        <h5>Original (&omega; = 0)</h5>
-      </td>
-      <td>
-        <img width="100%" src="imgs/t2v/202410251114_003.gif">
-        <h5>&omega; Increasing</h5>
-      </td>
-    </tr>
-
-
-  </table>
+      <!-- AnimateDiff 模型结果 -->
+      <div class="feature-card" style="margin: 30px 0; padding: 25px; background: #fff; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1);">
+        <div style="text-align: center; margin-bottom: 25px;">
+          <h4 style="color: #764ba2; font-size: 1.3em; margin-bottom: 10px;">
+            <i class="fas fa-magic" style="margin-right: 8px;"></i>
+            AnimateDiff Model
+          </h4>
+          <p style="color: #666; font-style: italic; font-size: 1.1em;">
+            "A panda surfing in the ocean, realistic, highquality."
+          </p>
+        </div>
+        
+        <div class="columns">
+          <div class="column is-half">
+            <div style="text-align: center;">
+              <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 15px;">
+                <img width="100%" src="imgs/t2v/202410251107_003.gif" style="transition: all 0.3s ease;">
+              </div>
+              <h5 style="color: #ff6b6b; font-weight: 600;">
+                <i class="fas fa-circle" style="margin-right: 5px; font-size: 0.5em;"></i>
+                Original (ω = 0)
+              </h5>
+            </div>
+          </div>
+          <div class="column is-half">
+            <div style="text-align: center;">
+              <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 15px;">
+                <img width="100%" src="imgs/t2v/202410251114_003.gif" style="transition: all 0.3s ease;">
+              </div>
+              <h5 style="color: #4ecdc4; font-weight: 600;">
+                <i class="fas fa-arrow-up" style="margin-right: 5px;"></i>
+                ω Enhanced
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
   
 
-<section class="hero is-small is-light">
+<section class="hero is-small is-light" style="background: linear-gradient(135deg, #f8f9ff 0%, #e8f2ff 100%); padding: 80px 0;">
   <div class="hero-body">
-  <div class="col-md-12">
-      <!-- <h4 id="captiona" style="margin-top: 0px;"><B>(d) Gradio Demo</B></h4> -->
-      <h2 class="title is-3 has-text-centered">Gradio Demo</h2>
-      <h5 style="text-align: center;"><B>Local Control (ControlNet)</B></h5>
-      <video width="100%" controls autoplay>
-          <source src="imgs/gradio_videos/gradio_controlnet.mp4" type="video/mp4">
-      </video>
+    <div class="feature-card fade-in-up">
+      <div style="text-align: center; margin-bottom: 40px;">
+        <i class="fas fa-play-circle" style="font-size: 3rem; color: #667eea; margin-bottom: 15px;"></i>
+        <h2 class="title is-3 gradient-title">Live Demo</h2>
+        <p style="color: #666; font-size: 1.1em; margin-top: 10px;">Experience the real-time interactive effects of Omegance</p>
+        <div style="width: 60px; height: 4px; background: linear-gradient(45deg, #667eea, #764ba2); margin: 15px auto; border-radius: 2px;"></div>
+      </div>
+      
+      <div class="columns">
+        <div class="column is-half">
+          <div class="feature-card" style="margin: 15px; padding: 25px; background: #fff; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1);">
+            <div style="text-align: center; margin-bottom: 20px;">
+              <h4 style="color: #667eea; font-size: 1.3em; margin-bottom: 10px;">
+                <i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i>
+                Local Control (ControlNet)
+              </h4>
+              <p style="color: #666; font-size: 0.9em;">Precise control over specific image regions</p>
+            </div>
+            <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+              <video width="100%" controls autoplay style="border-radius: 10px;">
+                  <source src="imgs/gradio_videos/gradio_controlnet.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+        
+        <div class="column is-half">
+          <div class="feature-card" style="margin: 15px; padding: 25px; background: #fff; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1);">
+            <div style="text-align: center; margin-bottom: 20px;">
+              <h4 style="color: #764ba2; font-size: 1.3em; margin-bottom: 10px;">
+                <i class="fas fa-globe" style="margin-right: 8px;"></i>
+                Global Control
+              </h4>
+              <p style="color: #666; font-size: 0.9em;">Uniform detail adjustment across the entire image</p>
+            </div>
+            <div style="border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+              <video width="100%" controls autoplay style="border-radius: 10px;">
+                  <source src="imgs/gradio_videos/gradio_global.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div style="text-align: center; margin-top: 30px;">
+        <div class="tags has-addons is-centered" style="display: inline-flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+          <span class="tag is-medium" style="background: #e8f2ff; color: #667eea; border-radius: 20px;">
+            <i class="fas fa-mouse-pointer" style="margin-right: 5px;"></i>
+            Real-time Interaction
+          </span>
+          <span class="tag is-medium" style="background: #f0f8ff; color: #667eea; border-radius: 20px;">
+            <i class="fas fa-download" style="margin-right: 5px;"></i>
+            Instant Download
+          </span>
+          <span class="tag is-medium" style="background: #f8f0ff; color: #764ba2; border-radius: 20px;">
+            <i class="fas fa-share-alt" style="margin-right: 5px;"></i>
+            Easy Sharing
+          </span>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="col-md-12" style="margin-top: 15px;">
-      <h5 style="text-align: center; margin-top: 20px;"><B>Global Control</B></h5>
-      <video width="100%" controls autoplay>
-          <source src="imgs/gradio_videos/gradio_global.mp4" type="video/mp4">
-      </video>
-  </div>
-</div>
 
 </div>
 
@@ -676,6 +1133,48 @@
 <script>
     $(function(){
         $(".twentytwenty-container[data-orientation!='vertical']").twentytwenty({default_offset_pct: 0.5});
+    });
+
+    // 添加滚动动画效果
+    $(document).ready(function() {
+        // 滚动时添加动画效果
+        $(window).scroll(function() {
+            $('.fade-in-up').each(function() {
+                var elementTop = $(this).offset().top;
+                var elementBottom = elementTop + $(this).outerHeight();
+                var viewportTop = $(window).scrollTop();
+                var viewportBottom = viewportTop + $(window).height();
+                
+                if (elementBottom > viewportTop && elementTop < viewportBottom) {
+                    $(this).addClass('animate__animated animate__fadeInUp');
+                }
+            });
+        });
+        
+        // 为滑块添加实时值显示
+        $('input[type="range"]').on('input', function() {
+            var value = $(this).val();
+            var percentage = (value / 20) * 100;
+            $(this).css('background', `linear-gradient(to right, #ff6b6b 0%, #667eea ${percentage}%, #4ecdc4 100%)`);
+        });
+        
+        // 初始化滑块背景
+        $('input[type="range"]').each(function() {
+            var value = $(this).val();
+            var percentage = (value / 20) * 100;
+            $(this).css('background', `linear-gradient(to right, #ff6b6b 0%, #667eea ${percentage}%, #4ecdc4 100%)`);
+        });
+        
+        // 添加平滑滚动
+        $('a[href^="#"]').on('click', function(event) {
+            var target = $(this.getAttribute('href'));
+            if (target.length) {
+                event.preventDefault();
+                $('html, body').stop().animate({
+                    scrollTop: target.offset().top - 80
+                }, 1000);
+            }
+        });
     });
 </script>
 
