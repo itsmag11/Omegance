@@ -14,7 +14,7 @@
 
 ## 🎯 Project Overview
 
-**Omegance** is a revolutionary diffusion model control framework that achieves precise control over image detail granularity through a single **Omega parameter**. Whether it's global effects, temporal dynamics, or spatial distribution, one parameter controls everything!
+**Omegance** is a small tweak in the diffusion model that achieves precise control over image detail granularity through a single **Omega parameter**. Whether it's global, temporal (as in denoising process), or spatial effects, one parameter controls everything!
 
 ### ✨ Key Features
 
@@ -22,7 +22,7 @@
 - 🌍 **Global Granularity Control** - Influence the detail richness of the entire image
 - ⏰ **Temporal Dynamic Scheduling** - Dynamically adjust detail control during generation
 - 🗺️ **Spatial Regional Control** - Apply different detail control to different regions via masks
-- 🔧 **Multi-Model Support** - Supports Stable Diffusion, FLUX, Hunyuan, and more
+- 🔧 **Multi-Model Support** - Supports Stable Diffusion series, FLUX, Hunyuan, and more!
 
 ## 🚀 Quick Start
 
@@ -49,13 +49,13 @@ We provide three different Gradio demo interfaces:
 python gradio_global_sdxl.py
 ```
 - Control the detail level of the entire image by adjusting the Omega value
-- Positive values increase details, negative values decrease details
+- Positive values suppress details, negative values enhance details
 
 #### 2. Spatial Regional Control
 ```bash
 python gradio_controlnet_sdxl.py
 ```
-- Use ControlNet-Canny for spatial control
+- Use ControlNet conditions for spatial control
 - Set different Omega values for different regions
 
 #### 3. Sketch to Mask
