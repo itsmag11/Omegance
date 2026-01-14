@@ -6,7 +6,9 @@
 [![Paper](https://img.shields.io/badge/Paper-arXiv-red)](https://arxiv.org/abs/2411.17769)
 [![Project Page](https://img.shields.io/badge/Project-Page-green)](https://itsmag11.github.io/Omegance/)
 
-**One Parameter, Infinite Possibilities** - Precise control over diffusion model detail granularity through the Omega parameter
+[Xinyu Hou](https://itsmag11.github.io/), [Zongsheng Yue](https://zsyoaoa.github.io/), [Xiaoming Li](https://csxmli2016.github.io/), [Chen Change Loy](https://www.mmlab-ntu.com/person/ccloy/)
+
+S-Lab, Nanyang Technological University
 
 [![Teaser Image](./figures/teaser.jpg)](https://itsmag11.github.io/Omegance/)
 
