@@ -17,8 +17,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css?v=2">
-  <script defer src="static/js/index.js?v=2"></script>
+  <link rel="stylesheet" href="static/css/index.css?v=3">
+  <script defer src="static/js/index.js?v=3"></script>
 </head>
 <body>
 
@@ -27,8 +27,8 @@
     <a class="topnav-brand" href="#">Omegance</a>
     <div class="topnav-links">
       <a href="#demo-section">Demo</a>
+      <a href="#comparisons">Compare</a>
       <a href="#video-section">Video</a>
-      <a href="#tool-section">Tool</a>
       <a href="#BibTeX">BibTeX</a>
       <a href="#contact">Contact</a>
       <a class="topnav-icon" href="https://github.com/itsmag11/Omegance" target="_blank" aria-label="Code"><i class="fab fa-github"></i></a>
@@ -63,9 +63,6 @@
         </a>
         <a href="https://github.com/itsmag11/Omegance" target="_blank" class="button is-dark is-rounded">
           <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
-        </a>
-        <a href="#tool-section" class="button is-dark is-rounded">
-          <span class="icon"><i class="fas fa-play"></i></span><span>Demo</span>
         </a>
       </div>
     </div>
@@ -107,47 +104,41 @@
 
 <section class="section section-tint" id="demo-section">
   <div class="container is-max-desktop">
-    <p class="eyebrow">Interactive Demo</p>
-    <h2 class="title is-3 has-text-centered">One Parameter, Continuous Granularity</h2>
+    <p class="eyebrow">Continuous Output</p>
+    <h2 class="title is-3 has-text-centered">Turn the Detail Knob Yourself</h2>
     <p class="has-text-centered section-subtitle">
-      Sweeping <i>ω</i> smoothly moves the same generation from coarse and clean to rich and intricate,
-      while keeping the overall composition.
+      Each slider sweeps <i>ω</i> for a single generation. The layout stays put; only the amount of fine
+      structure changes.
     </p>
 
-    <div class="demo" id="demo">
-      <div class="demo-pair">
-        <div class="demo-viewer">
-          <img id="demo-original" alt="Original output">
-          <span class="demo-label">Original (<i>ω</i> = 0)</span>
-        </div>
-        <div class="demo-viewer">
-          <img id="demo-image" alt="Omegance output">
-          <span class="demo-label" id="demo-label">Original</span>
-        </div>
+    <div class="omega-grid" id="omega-grid">
+      <div class="omega-item" data-scene="1">
+        <div class="demo-viewer"><img alt="Example 1"><span class="demo-label">Original</span></div>
+        <input class="omega-range" type="range" min="0" max="20" step="1" value="10" aria-label="Omega for example 1">
       </div>
-
-      <div class="demo-controls">
-        <label class="omega-slider">
-          <span class="omega-end">Less detail</span>
-          <input type="range" id="demo-omega" min="0" max="20" step="1" value="10" aria-label="Omega">
-          <span class="omega-end">More detail</span>
-        </label>
+      <div class="omega-item" data-scene="2">
+        <div class="demo-viewer"><img alt="Example 2"><span class="demo-label">Original</span></div>
+        <input class="omega-range" type="range" min="0" max="20" step="1" value="10" aria-label="Omega for example 2">
       </div>
-
-      <div class="demo-scenes" id="demo-scenes"></div>
-      <p class="demo-hint">
-        Drag the slider to change <i>ω</i>: the centre is the original output, left removes detail and right adds it.
-        Click a thumbnail to switch scenes.
-      </p>
+      <div class="omega-item" data-scene="3">
+        <div class="demo-viewer"><img alt="Example 3"><span class="demo-label">Original</span></div>
+        <input class="omega-range" type="range" min="0" max="20" step="1" value="10" aria-label="Omega for example 3">
+      </div>
+      <div class="omega-item" data-scene="4">
+        <div class="demo-viewer"><img alt="Example 4"><span class="demo-label">Original</span></div>
+        <input class="omega-range" type="range" min="0" max="20" step="1" value="10" aria-label="Omega for example 4">
+      </div>
+    </div>
+    <div class="omega-legend">
+      <span><i class="fas fa-arrow-left"></i><i>ω</i> &gt; 0 &middot; smoother</span>
+      <span class="omega-legend-mid">middle = original</span>
+      <span><i>ω</i> &lt; 0 &middot; richer<i class="fas fa-arrow-right"></i></span>
     </div>
   </div>
 
   <div class="container is-max-desktop showcase-part" id="comparisons">
     <p class="eyebrow">Before &amp; After</p>
     <h2 class="title is-3 has-text-centered">Less or More, Your Choice</h2>
-    <p class="has-text-centered section-subtitle">
-      Positive <i>ω</i> suppresses fine textures for a cleaner look; negative <i>ω</i> enriches them.
-    </p>
 
     <div class="cmp" id="cmp">
       <div class="cmp-pair">
@@ -169,7 +160,7 @@
         </div>
       </div>
       <div class="demo-scenes" id="cmp-scenes"></div>
-      <p class="demo-hint">Drag either divider to compare with the original output, and click a thumbnail to switch scenes.</p>
+      <p class="demo-hint">The left half of each view is the original output. Pick another example from the thumbnails.</p>
     </div>
   </div>
 </section>
@@ -179,7 +170,7 @@
     <p class="eyebrow">Text-to-Video</p>
     <h2 class="title is-3 has-text-centered">Works on Video Diffusion, Too</h2>
     <p class="has-text-centered section-subtitle">
-      Omegance plugs into video diffusion models as-is, enriching detail consistently across frames.
+      The same <i>ω</i> drops straight into video diffusion models and reshapes granularity coherently over time.
     </p>
 
     <div class="video-case">
@@ -218,37 +209,7 @@
   </div>
 </section>
 
-<section class="section section-tint" id="tool-section">
-  <div class="container is-max-desktop">
-    <p class="eyebrow">Interactive Tool</p>
-    <h2 class="title is-3 has-text-centered">Global or Local, in a Few Clicks</h2>
-    <p class="has-text-centered section-subtitle">
-      Our Gradio demo applies <i>ω</i> to the whole image, or to selected regions using masks derived from
-      ControlNet conditions.
-    </p>
-
-    <div class="demo-pair">
-      <figure class="tool-card">
-        <div class="demo-viewer">
-          <video controls autoplay muted loop playsinline preload="metadata">
-            <source src="imgs/gradio_videos/gradio_global.mp4" type="video/mp4">
-          </video>
-        </div>
-        <figcaption><b>Global control.</b> Uniform detail adjustment across the entire image.</figcaption>
-      </figure>
-      <figure class="tool-card">
-        <div class="demo-viewer">
-          <video controls autoplay muted loop playsinline preload="metadata">
-            <source src="imgs/gradio_videos/gradio_controlnet.mp4" type="video/mp4">
-          </video>
-        </div>
-        <figcaption><b>Local control (ControlNet).</b> Region-specific <i>ω</i> masks for precise control over chosen objects.</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="BibTeX">
+<section class="section section-tint" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title is-3 has-text-centered">BibTeX</h2>
     <div class="bibtex">
@@ -263,26 +224,26 @@
   </div>
 </section>
 
-<footer class="footer section-tint" id="contact">
+<footer class="footer" id="contact">
   <div class="container is-max-desktop has-text-centered">
-    <h2 class="title is-3 has-text-centered">Contact</h2>
+    <h2 class="title is-3 has-text-centered">Get in Touch</h2>
     <p class="closing">
-      Questions or feedback? Reach out to Xinyu Hou at
-      <a href="mailto:xinyu.hou@ntu.edu.sg">xinyu.hou@ntu.edu.sg</a>, or open an issue on
-      <a href="https://github.com/itsmag11/Omegance/issues" target="_blank">GitHub</a>.
+      For questions about the paper or code, email Xinyu Hou
+      (<a href="mailto:xinyu.hou@ntu.edu.sg">xinyu.hou@ntu.edu.sg</a>) or file an
+      <a href="https://github.com/itsmag11/Omegance/issues" target="_blank">issue</a> in the repository.
     </p>
 
     <div class="star-cta">
-      <p>If you find Omegance useful, please consider giving our repo a star. It helps others discover the project!</p>
+      <p>Enjoying Omegance? A star on GitHub goes a long way.</p>
       <a class="star-cta-button" href="https://github.com/itsmag11/Omegance" target="_blank">
-        <i class="fab fa-github"></i><span>Star on GitHub</span>
+        <i class="fab fa-github"></i><span>itsmag11/Omegance</span>
         <span class="star-cta-count" data-gh-stars hidden><i class="fas fa-star"></i><b></b></span>
       </a>
     </div>
 
     <p class="credit">
-      This page template is adapted from <a href="https://github.com/nerfies/nerfies.github.io" target="_blank">Nerfies</a>,
-      licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a>.
+      Built on the <a href="https://github.com/nerfies/nerfies.github.io" target="_blank">Nerfies</a> website template
+      (<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a>).
     </p>
   </div>
 </footer>

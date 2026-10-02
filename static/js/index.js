@@ -6,44 +6,28 @@
   const frame = (scene, v) => `imgs/slider${scene}/img${STEPS - v}.jpg`;
 
   function initDemo() {
-    const original = document.getElementById('demo-original');
-    const image = document.getElementById('demo-image');
-    const label = document.getElementById('demo-label');
-    const slider = document.getElementById('demo-omega');
-    const scenesEl = document.getElementById('demo-scenes');
-    const scenes = [1, 2, 3, 4];
-    let scene = scenes[0];
+    document.querySelectorAll('.omega-item').forEach((item) => {
+      const scene = item.dataset.scene;
+      const image = item.querySelector('img');
+      const label = item.querySelector('.demo-label');
+      const slider = item.querySelector('.omega-range');
+      let preloaded = false;
 
-    function render() {
-      const v = Number(slider.value);
-      image.src = frame(scene, v);
-      const level = Math.abs(v - CENTER);
-      label.textContent = level === 0 ? 'Original' : `${v < CENTER ? 'Less' : 'More'} detail · ${level}/${CENTER}`;
-    }
+      function render() {
+        const v = Number(slider.value);
+        image.src = frame(scene, v);
+        const level = Math.abs(v - CENTER);
+        label.textContent = level === 0 ? 'Original' : `${v < CENTER ? 'Smoother' : 'Richer'} · ${level}/${CENTER}`;
+      }
 
-    function preload(s) {
-      for (let v = 0; v <= STEPS; v++) new Image().src = frame(s, v);
-    }
-
-    scenes.forEach((s, i) => {
-      const btn = document.createElement('button');
-      btn.className = 'demo-thumb' + (i === 0 ? ' is-active' : '');
-      btn.setAttribute('aria-label', `Scene ${s}`);
-      btn.innerHTML = `<img src="${frame(s, CENTER)}" alt="">`;
-      btn.addEventListener('click', () => {
-        scene = s;
-        scenesEl.querySelectorAll('.demo-thumb').forEach((b) => b.classList.toggle('is-active', b === btn));
-        original.src = frame(s, CENTER);
-        preload(s);
-        render();
+      slider.addEventListener('pointerdown', () => {
+        if (preloaded) return;
+        preloaded = true;
+        for (let v = 0; v <= STEPS; v++) new Image().src = frame(scene, v);
       });
-      scenesEl.appendChild(btn);
+      slider.addEventListener('input', render);
+      render();
     });
-
-    slider.addEventListener('input', render);
-    original.src = frame(scene, CENTER);
-    render();
-    preload(scene);
   }
 
   function initCompare() {

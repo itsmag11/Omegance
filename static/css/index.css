@@ -258,8 +258,7 @@ body {
 /* ---------- Section scaffolding ---------- */
 
 #demo-section,
-#video-section,
-#tool-section {
+#video-section {
   padding: 5.5rem 1.5rem;
   scroll-margin-top: var(--nav-h);
 }
@@ -350,30 +349,20 @@ video {
   background: linear-gradient(90deg, rgba(20, 184, 166, 0.9), rgba(139, 92, 246, 0.9));
 }
 
-.demo-controls {
-  display: flex;
-  justify-content: center;
-  margin-top: 1.25rem;
+.omega-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem 1.5rem;
 }
 
-.omega-slider {
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
+@media (max-width: 768px) {
+  .omega-grid { grid-template-columns: 1fr; }
+}
+
+.omega-range {
+  display: block;
   width: 100%;
-  max-width: 560px;
-}
-
-.omega-end {
-  flex: none;
-  font-family: 'Google Sans', sans-serif;
-  font-weight: 600;
-  color: var(--muted);
-  white-space: nowrap;
-}
-
-.omega-slider input {
-  flex: 1;
+  margin-top: 0.9rem;
   height: 6px;
   border-radius: 3px;
   -webkit-appearance: none;
@@ -382,7 +371,7 @@ video {
   cursor: pointer;
 }
 
-.omega-slider input::-webkit-slider-thumb {
+.omega-range::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 20px;
   height: 20px;
@@ -392,7 +381,7 @@ video {
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
 }
 
-.omega-slider input::-moz-range-thumb {
+.omega-range::-moz-range-thumb {
   width: 20px;
   height: 20px;
   border: 3px solid #fff;
@@ -401,8 +390,24 @@ video {
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
 }
 
-@media (max-width: 480px) {
-  .omega-end { font-size: 0.85rem; }
+.omega-legend {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 640px;
+  margin: 1.75rem auto 0;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.omega-legend .fas {
+  margin: 0 0.4rem;
+  font-size: 0.8rem;
+}
+
+.omega-legend-mid {
+  color: #999;
 }
 
 .demo-scenes {
@@ -544,18 +549,6 @@ video {
   vertical-align: middle;
 }
 
-/* ---------- Gradio tool ---------- */
-
-.tool-card {
-  margin: 0;
-}
-
-.tool-card figcaption {
-  margin-top: 0.85rem;
-  text-align: center;
-  color: var(--muted);
-}
-
 /* ---------- BibTeX ---------- */
 
 .bibtex {
@@ -596,6 +589,7 @@ video {
 .footer {
   padding: 4.5rem 1.5rem 2rem;
   font-size: 0.9rem;
+  background: #fff;
 }
 
 .closing {
