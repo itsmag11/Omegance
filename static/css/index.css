@@ -23,6 +23,7 @@ img { display: block; width: 100%; height: auto; }
 .hero { padding: 4rem 0 0; }
 .hero h1 { margin: 0; font-size: clamp(4rem, 13vw, 11.5rem); line-height: 0.85; font-weight: 700; letter-spacing: -0.055em; }
 .hero h1 span { color: var(--blue); }
+.venue { display: inline-block; margin-left: 0.4rem; padding: 0.15rem 0.5rem; background: var(--blue); color: #fff; font-weight: 500; }
 .hero-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.5rem; margin-top: 2.5rem; padding: 1.5rem 0 3rem; border-top: 3px solid var(--ink); }
 .hero-grid > div:nth-child(1) { grid-column: span 5; }
 .hero-grid > div:nth-child(2) { grid-column: span 4; }
