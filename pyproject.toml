@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "omegance"
+version = "1.0.0"
+description = "Omegance: a single parameter for various granularities in diffusion-based synthesis (ICCV 2025)"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.9"
+authors = [{ name = "Xinyu Hou" }]
+dependencies = ["torch>=2.0", "diffusers>=0.30", "numpy"]
+
+[project.optional-dependencies]
+demo = ["gradio>=4", "transformers", "accelerate"]
+
+[project.urls]
+Homepage = "https://itsmag11.github.io/Omegance/"
+Paper = "https://arxiv.org/abs/2411.17769"
+Repository = "https://github.com/itsmag11/Omegance"
+
+[tool.setuptools]
+packages = ["omegance"]

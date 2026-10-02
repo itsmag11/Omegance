@@ -1,258 +1,109 @@
 <div align="center">
 
-# 🌟 Omegance: A Single Parameter for Various Granularities in Diffusion-Based Synthesis
-
-[![ICCV 2025](https://img.shields.io/badge/ICCV-2025-blue)](https://iccv2025.thecvf.com/)
-[![Paper](https://img.shields.io/badge/Paper-arXiv-red)](https://arxiv.org/abs/2411.17769)
-[![Project Page](https://img.shields.io/badge/Project-Page-green)](https://itsmag11.github.io/Omegance/)
+# Omegance: A Single Parameter for Various Granularities in Diffusion-Based Synthesis
 
 [Xinyu Hou](https://itsmag11.github.io/), [Zongsheng Yue](https://zsyoaoa.github.io/), [Xiaoming Li](https://csxmli2016.github.io/), [Chen Change Loy](https://www.mmlab-ntu.com/person/ccloy/)
 
 S-Lab, Nanyang Technological University
 
-[![Teaser Image](./figures/teaser.jpg)](https://itsmag11.github.io/Omegance/)
+**ICCV 2025**
+
+[![ICCV 2025](https://img.shields.io/badge/ICCV-2025-4b44ce)](https://iccv2025.thecvf.com/)
+[![Paper](https://img.shields.io/badge/Paper-arXiv-b31b1b)](https://arxiv.org/abs/2411.17769)
+[![Project Page](https://img.shields.io/badge/Project-Page-4c9a2a)](https://itsmag11.github.io/Omegance/)
+[![GitHub Stars](https://img.shields.io/github/stars/itsmag11/Omegance?style=social)](https://github.com/itsmag11/Omegance)
 
 </div>
 
 ## 🎯 Project Overview
 
-**Omegance** is a small tweak in the diffusion model that achieves precise control over image detail granularity through a single **Omega parameter**. Whether it's global, temporal (as in denoising process), or spatial effects, one parameter controls everything!
+**Omegance** controls the detail granularity of diffusion-based synthesis with a single parameter, omega, without any
+training. One line of code adds it to 🤗 Diffusers pipelines, for global, temporal or spatial (masked) control:
+**omega < 0 gives more details, omega > 0 gives fewer details**, and omega = 0 leaves the output unchanged.
 
-### ✨ Key Features
-
-- 🎛️ **Single Parameter Control** - Control image details by simply adjusting the Omega value
-- 🌍 **Global Granularity Control** - Influence the detail richness of the entire image
-- ⏰ **Temporal Dynamic Scheduling** - Dynamically adjust detail control during generation
-- 🗺️ **Spatial Regional Control** - Apply different detail control to different regions via masks
-- 🔧 **Multi-Model Support** - Supports Stable Diffusion series, FLUX, Hunyuan, and more!
+[![Teaser Image](./media/teaser.jpg)](https://itsmag11.github.io/Omegance/)
 
 ## 🚀 Quick Start
 
-### Environment Setup
-
 ```bash
-# Create conda environment
-conda create --name omegance python=3.9
-conda activate omegance
-
-# Install PyTorch (CUDA 11.8)
-conda install pytorch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 pytorch-cuda=11.8 -c pytorch -c nvidia
-
-# Install dependencies
-pip install diffusers==0.31.0 pytorch_lightning transformers==4.45.1 protobuf sentencepiece gradio
+pip install git+https://github.com/itsmag11/Omegance
 ```
-
-### 🎮 Interactive Demos
-
-We provide three different Gradio demo interfaces:
-
-#### 1. Global Effect Control
-```bash
-python gradio_global_sdxl.py
-```
-- Control the detail level of the entire image by adjusting the Omega value
-- Positive values suppress details, negative values enhance details
-
-#### 2. Spatial Regional Control
-```bash
-python gradio_controlnet_sdxl.py
-```
-- Use ControlNet conditions for spatial control
-- Set different Omega values for different regions
-
-#### 3. Sketch to Mask
-```bash
-python gradio_sketch2mask.py
-```
-- Convert user-drawn sketches to binary masks
-- Prepare for subsequent spatial control
-
-## 📖 Usage Guide
-
-### Basic Usage
 
 ```python
 import torch
-from omegance_pipelines.pipeline_stable_diffusion_xl_snrcontrol import StableDiffusionXLSNRControlPipeline
-from omegance_schedulers.scheduling_ddim_snrcontrol import DDIMSNRControlScheduler
+from diffusers import StableDiffusionXLPipeline
+from omegance import apply_omegance
 
-# Load model
-model_path = "stabilityai/stable-diffusion-xl-base-1.0"
-scheduler = DDIMSNRControlScheduler.from_pretrained(model_path, subfolder="scheduler")
-pipe = StableDiffusionXLSNRControlPipeline.from_pretrained(
-    model_path, scheduler=scheduler, torch_dtype=torch.float16
+pipe = StableDiffusionXLPipeline.from_pretrained(
+    "stabilityai/stable-diffusion-xl-base-1.0", torch_dtype=torch.float16
 ).to("cuda")
 
-# Generate image
-prompt = "A beautiful landscape with mountains and lakes"
-image = pipe(
-    prompt=prompt,
-    omega=10.0,  # Increase details
-    num_inference_steps=50
-).images[0]
+apply_omegance(pipe, omega=-5)
+image = pipe("a cozy wooden cabin in a snowy forest").images[0]
 ```
 
-### Advanced Usage
+Tested with SDXL (incl. img2img, inpainting, ControlNet), AnimateDiff-SDXL, Latte, SD3 and FLUX (incl. ControlNet),
+using the DDIM, Euler and Flow Matching schedulers. Other pipelines and schedulers may also work, but are untested.
 
-#### Temporal Dynamic Scheduling
+## 🎛️ Usage
+
 ```python
-# Use predefined Omega scheduling strategies
-# Uses: StableDiffusionXLSNRControlPipeline (same as global)
-image = pipe(
-    prompt=prompt,
-    omega_schedule_type='exp1',  # Exponential scheduling
-    num_inference_steps=50
-).images[0]
+# Global: useful range is about [-10, 10]
+pipe.scheduler.set_omega(-5)
+pipe.scheduler.set_omega(-5, active_range=(0.0, 0.5))  # only the early half of denoising (large timesteps)
+
+# Temporal: presets "exp1", "exp2", "cos1", "cos2", or a list of per-step scales around 1.0
+pipe.scheduler.set_omega(schedule="exp2")
+
+# Spatial: black region -> low, white region -> high
+from omegance import omega_mask
+pipe.scheduler.set_omega(omega_mask(mask_image, low=10, high=-10))
+
+# Turn off
+from omegance import remove_omegance
+remove_omegance(pipe)
 ```
 
-#### Spatial Regional Control
-```python
-# Set different Omega values for different regions
-# Uses: StableDiffusionXLControlNetSNRControlPipeline (different from global)
-from omegance_pipelines.pipeline_controlnet_sd_xl_snrcontrol import StableDiffusionXLControlNetSNRControlPipeline
-from diffusers import ControlNetModel
+## 🎮 Local Demo
 
-# Load ControlNet for spatial control
-controlnet = ControlNetModel.from_pretrained("diffusers/controlnet-canny-sdxl-1.0")
-pipe_spatial = StableDiffusionXLControlNetSNRControlPipeline.from_pretrained(
-    "stabilityai/stable-diffusion-xl-base-1.0",
-    controlnet=controlnet,
-    scheduler=scheduler
-)
+An interactive Gradio demo with three tabs, each showing the result next to the omega = 0 baseline:
 
-image = pipe_spatial(
-    prompt=prompt,
-    image=control_image,  # ControlNet input image
-    omega_mask=omega_mask,  # Spatial Omega mask
-    controlnet_conditioning_scale=0.5
-).images[0]
-```
-
-## 🔬 Technical Principles
-
-### Pipeline Architecture
-
-Omegance uses different pipeline classes for different control types:
-
-| Control Type | Pipeline | Use Case | Key Parameters |
-|--------------|----------|----------|----------------|
-| **Global** | `StableDiffusionXLSNRControlPipeline` | Simple detail control | `omega` |
-| **Temporal** | `StableDiffusionXLSNRControlPipeline` | Dynamic scheduling | `omega_schedule_type` |
-| **Spatial** | `StableDiffusionXLControlNetSNRControlPipeline` | Regional control | `omega_mask` |
-
-### How the Omega Parameter Works
-
-The Omega parameter influences the diffusion process through:
-
-1. **Noise Prediction Scaling**: `model_output = model_output * omega`
-2. **Logistic Function Rescaling**: Maps user input Omega values to [0.95, 1.05] range
-3. **Multi-Granularity Control**: Supports global, temporal, and spatial control
-
-<!-- ### Supported Scheduling Strategies
-
-- **EXP1/EXP2**: Exponential scheduling, suitable for progressive detail adjustment
-- **COS1/COS2**: Cosine scheduling, suitable for smooth transitions
-- **Custom Scheduling**: Supports user-defined timestep scheduling -->
-
-<!-- ## 📊 Effect Showcase
-
-### Global Effect Comparison
-
-| Omega Value | Effect Description | Use Cases |
-|-------------|-------------------|-----------|
-| -5.0 | Minimalist style, least details | Abstract art, minimalist design |
-| 0.0 | Original effect | Standard generation |
-| 5.0 | Ultra-detailed, rich details | Fine illustrations, high-detail images |
-
-### Temporal Dynamic Effects
-
-Through different Omega scheduling strategies, you can achieve:
-- Coarse early, fine later
-- Fine early, coarse later
-- Fine in the middle, coarse at both ends -->
-
-## 🛠️ Inference Scripts
-
-### Batch Generation Comparison
+- **Global**: pick one omega for the whole image.
+- **Temporal**: pick an omega schedule preset.
+- **Spatial**: paint a region on the canvas and set one omega inside it and another outside.
 
 ```bash
-# Global effect comparison
-bash sdxl-global_comparison.sh
-
-# Temporal effect comparison
-bash sdxl-temporal_comparison.sh
-
-# Spatial effect comparison
-bash sdxl-spatial_comparison.sh
+git clone https://github.com/itsmag11/Omegance.git
+cd Omegance
+pip install -e ".[demo]"
+python app.py
 ```
 
-<!-- ### Custom Inference
+Then open http://127.0.0.1:7860 in your browser. The first run downloads SDXL (~7 GB).
 
-```bash
-python sdxl_inference.py \
-    --prompt "Your prompt here" \
-    --omega 2.0 \
-    --omega_schedule_type exp1 \
-    --note "my_experiment"
-``` -->
+| Option | Description |
+|--------|-------------|
+| `--model` | Another SDXL-compatible model, e.g. `--model SG161222/RealVisXL_V5.0` |
+| `--offload` | CPU offload for GPUs with ~8 GB of memory (slower) |
+| `--share` | Create a temporary public link to share the demo |
+| `--port` | Server port (default `7860`) |
 
-<!-- ## 📁 Project Structure
+A CUDA GPU with ≥12 GB memory is recommended. Apple Silicon (MPS) and CPU also work, but are much slower.
 
-```
-Omegance/
-├── omegance_pipelines/          # Core pipeline implementations
-│   ├── pipeline_stable_diffusion_xl_snrcontrol.py
-│   ├── pipeline_flux_snrcontrol.py
-│   └── utils/
-├── omegance_schedulers/         # Scheduler implementations
-│   ├── scheduling_ddim_snrcontrol.py
-│   ├── scheduling_euler_discrete_snrcontrol.py
-│   └── scheduling_flow_match_euler_discrete_snrcontrol.py
-├── inference_scripts/           # Inference scripts
-│   ├── sdxl_omega_schedule_inference.py
-│   ├── flux_controlnet-canny_inference.py
-│   └── ReNoise-Inversion/
-├── gradio_*.py                  # Demo interfaces
-└── figures/                     # Project images
-```
+## 📖 Citation
 
-## 🎨 Application Scenarios
-
-- **Artistic Creation**: Control the detail level of painting styles
-- **Product Design**: Adjust the fineness of product rendering
-- **Content Generation**: Adjust image details according to needs
-- **Style Transfer**: Achieve different granularity style conversions
-- **Animation Production**: Control detail changes in animation frames -->
-
-## 📚 Citation
-
-If you use Omegance, please cite our paper:
+If you find our work useful for your research, please consider citing:
 
 ```bibtex
 @inproceedings{hou2025omegance,
-  title={Omegance: A Single Parameter for Various Granularities in Diffusion-Based Synthesis},
-  author={Hou, Xinyu and Yue, Zongsheng and Li, Xiaoming and Loy, Chen Change},
-  booktitle={International Conference on Computer Vision (ICCV)},
-  year={2025}
+  title     = {Omegance: A Single Parameter for Various Granularities in Diffusion-Based Synthesis},
+  author    = {Hou, Xinyu and Yue, Zongsheng and Li, Xiaoming and Loy, Chen Change},
+  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+  year      = {2025}
 }
 ```
-<!-- 
-## 🤝 Contributing
 
-We welcome contributions in all forms!
+## 📜 License
 
-1. **Report Issues**: Report bugs or suggest improvements in Issues
-2. **Submit Code**: Submit code improvements via Pull Requests
-3. **Share Cases**: Share your use cases and effect demonstrations
-4. **Improve Documentation**: Help improve documentation and tutorials -->
-
-## 📄 License
-
-This project is licensed under the [Apache License 2.0](LICENSE).
-
-## 🙏 Acknowledgments
-
-Thanks to the following open-source projects for support:
-- [Hugging Face Diffusers](https://github.com/huggingface/diffusers)
-- [Stable Diffusion](https://github.com/Stability-AI/stablediffusion)
-- [ControlNet](https://github.com/lllyasviel/ControlNet)
+This project is licensed under the [S-Lab License 1.0](LICENSE). The diffusion models you use with Omegance (e.g.
+Stable Diffusion XL, FLUX.1) are subject to their own licenses.
