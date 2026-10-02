@@ -66,8 +66,10 @@
   }
 
   function initNav() {
-    const links = document.querySelectorAll('.topnav-links a[href^="#"]');
-    const sections = [...links].map((a) => document.querySelector(a.getAttribute('href')));
+    const links = [...document.querySelectorAll('[data-nav] a[href^="#"]')]
+      .filter((a) => a.getAttribute('href').length > 1);
+    const sections = links.map((a) => document.querySelector(a.getAttribute('href')));
+    if (!links.length) return;
 
     function update() {
       const y = window.scrollY + window.innerHeight * 0.35;

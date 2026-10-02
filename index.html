@@ -6,79 +6,69 @@
   <meta name="description" content="Omegance: A Single Parameter for Various Granularities in Diffusion-Based Synthesis (ICCV 2025)">
   <meta name="keywords" content="Omegance, diffusion, granularity control, detail control, text-to-image, text-to-video">
   <title>Omegance: A Single Parameter for Various Granularities in Diffusion-Based Synthesis</title>
-
   <meta property="og:title" content="Omegance: A Single Parameter for Various Granularities in Diffusion-Based Synthesis">
   <meta property="og:description" content="A single parameter ω that controls the level of detail in diffusion models, with no retraining, no architectural change, and negligible overhead.">
   <meta property="og:image" content="imgs/comp_img1/original.jpg">
   <meta name="twitter:card" content="summary_large_image">
-
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css?v=3">
-  <script defer src="static/js/index.js?v=3"></script>
+  <link rel="stylesheet" href="static/css/index.css?v=6">
+  <script defer src="static/js/index.js?v=4"></script>
 </head>
 <body>
 
-<nav class="topnav" id="topnav">
-  <div class="topnav-inner">
-    <a class="topnav-brand" href="#">Omegance</a>
-    <div class="topnav-links">
+<header class="top">
+  <div class="wrap">
+    <b>Omegance</b>
+    <nav class="mono" data-nav>
+      <a href="#overview">Overview</a>
       <a href="#demo-section">Demo</a>
       <a href="#comparisons">Compare</a>
       <a href="#video-section">Video</a>
       <a href="#BibTeX">BibTeX</a>
       <a href="#contact">Contact</a>
-      <a class="topnav-icon" href="https://github.com/itsmag11/Omegance" target="_blank" aria-label="Code"><i class="fab fa-github"></i></a>
-    </div>
+    </nav>
   </div>
-</nav>
+</header>
 
-<section class="hero hero-omega">
-  <div class="grain-layer" aria-hidden="true"></div>
-  <div class="hero-body">
-    <div class="container is-max-desktop has-text-centered">
-      <h1 class="title is-1 publication-title">Omegance</h1>
-      <h2 class="subtitle is-3 publication-subtitle">A Single Parameter for Various Granularities in Diffusion-Based Synthesis</h2>
-
-      <div class="is-size-5 publication-authors">
-        <span class="author-block"><a href="https://itsmag11.github.io/" target="_blank">Xinyu Hou</a>,</span>
-        <span class="author-block"><a href="https://zsyoaoa.github.io/" target="_blank">Zongsheng Yue</a>,</span>
-        <span class="author-block"><a href="https://csxmli2016.github.io/" target="_blank">Xiaoming Li</a>,</span>
-        <span class="author-block"><a href="https://www.mmlab-ntu.com/person/ccloy/" target="_blank">Chen Change Loy</a></span>
+<section class="hero">
+  <div class="wrap">
+    <h1>Omegance<span>.</span></h1>
+    <div class="hero-grid">
+      <div>
+        <div class="mono">Paper &middot; ICCV 2025</div>
+        <p class="subtitle">A Single Parameter for Various Granularities in Diffusion-Based Synthesis</p>
       </div>
-      <div class="is-size-5 publication-authors">
-        <span class="author-block">S-Lab, Nanyang Technological University</span>
+      <div class="people">
+        <div class="mono">Authors</div>
+        <a href="https://itsmag11.github.io/" target="_blank">Xinyu Hou</a>,
+        <a href="https://zsyoaoa.github.io/" target="_blank">Zongsheng Yue</a>,
+        <a href="https://csxmli2016.github.io/" target="_blank">Xiaoming Li</a>,
+        <a href="https://www.mmlab-ntu.com/person/ccloy/" target="_blank">Chen Change Loy</a>
+        <div class="affil">S-Lab, Nanyang Technological University</div>
       </div>
-      <div class="publication-venue">ICCV 2025</div>
-
-      <div class="publication-links">
-        <a href="https://arxiv.org/abs/2411.17769" target="_blank" class="button is-dark is-rounded">
-          <span class="icon"><i class="ai ai-arxiv"></i></span><span>arXiv</span>
-        </a>
-        <a href="https://arxiv.org/pdf/2411.17769" target="_blank" class="button is-dark is-rounded">
-          <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span>
-        </a>
-        <a href="https://github.com/itsmag11/Omegance" target="_blank" class="button is-dark is-rounded">
-          <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
-        </a>
+      <div>
+        <div class="mono">Resources</div>
+        <ul class="linklist">
+          <li><a href="https://arxiv.org/abs/2411.17769" target="_blank"><span><i class="ai ai-arxiv"></i> arXiv</span><i class="fas fa-arrow-right"></i></a></li>
+          <li><a href="https://arxiv.org/pdf/2411.17769" target="_blank"><span><i class="fas fa-file-pdf"></i> Paper</span><i class="fas fa-arrow-right"></i></a></li>
+          <li><a href="https://github.com/itsmag11/Omegance" target="_blank"><span><i class="fab fa-github"></i> Code</span><i class="fas fa-arrow-right"></i></a></li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section tldr-section">
-  <div class="container is-max-desktop">
-    <p class="tldr">
-      <span class="tldr-tag">TL;DR</span>
-      <b>Omegance</b> controls how much detail a diffusion model generates with a single parameter
-      <i>ω</i>, with no retraining, no architectural change, and negligible overhead.
-    </p>
-    <details class="abstract">
-      <summary>Read the full abstract</summary>
-      <div class="content has-text-justified">
+<section class="band" id="overview">
+  <div class="wrap band-grid">
+    <div class="mono">TL;DR</div>
+    <div class="body">
+      <p class="big"><b>Omegance</b> controls how much detail a diffusion model generates with a single parameter <i>ω</i>, with no retraining, no architectural change, and negligible overhead.</p>
+      <details>
+        <summary>Read the full abstract</summary>
         <p>
           In this work, we show that we only need a single parameter <i>ω</i> to effectively control granularity
           in diffusion-based synthesis. This parameter is incorporated during the denoising steps of the diffusion
@@ -91,62 +81,59 @@
           performance across various image and video synthesis tasks and is adaptable to advanced diffusion
           models.
         </p>
+      </details>
+      <div class="ticks">
+        <span><i class="fas fa-check"></i>No retraining</span>
+        <span><i class="fas fa-check"></i>Negligible overhead</span>
+        <span><i class="fas fa-check"></i>Spatial &amp; temporal control</span>
+        <span><i class="fas fa-check"></i>Image &amp; video models</span>
       </div>
-    </details>
-    <div class="feature-pills">
-      <span><i class="fas fa-check"></i>No retraining</span>
-      <span><i class="fas fa-check"></i>Negligible overhead</span>
-      <span><i class="fas fa-check"></i>Spatial &amp; temporal control</span>
-      <span><i class="fas fa-check"></i>Image &amp; video models</span>
     </div>
   </div>
 </section>
 
-<section class="section section-tint" id="demo-section">
-  <div class="container is-max-desktop">
-    <p class="eyebrow">Continuous Output</p>
-    <h2 class="title is-3 has-text-centered">Turn the Detail Knob Yourself</h2>
-    <p class="has-text-centered section-subtitle">
-      Each slider sweeps <i>ω</i> for a single generation. The layout stays put, and only the amount of fine
-      structure changes.
-    </p>
-
-    <div class="omega-grid" id="omega-grid">
+<section class="sec" id="demo-section">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="mono">01 Continuous Output</div>
+      <h2>Turn the Detail Knob Yourself</h2>
+      <p>Each slider sweeps <i>ω</i> for a single generation. The layout stays put, and only the amount of fine structure changes.</p>
+    </div>
+    <div class="grid2">
       <div class="omega-item" data-scene="1">
-        <div class="demo-viewer"><img alt="Example 1"><span class="demo-label">Original</span></div>
+        <div class="frame"><img alt="Example 1"><span class="demo-label">Original</span></div>
         <input class="omega-range" type="range" min="0" max="20" step="1" value="10" aria-label="Omega for example 1">
       </div>
       <div class="omega-item" data-scene="2">
-        <div class="demo-viewer"><img alt="Example 2"><span class="demo-label">Original</span></div>
+        <div class="frame"><img alt="Example 2"><span class="demo-label">Original</span></div>
         <input class="omega-range" type="range" min="0" max="20" step="1" value="10" aria-label="Omega for example 2">
       </div>
       <div class="omega-item" data-scene="3">
-        <div class="demo-viewer"><img alt="Example 3"><span class="demo-label">Original</span></div>
+        <div class="frame"><img alt="Example 3"><span class="demo-label">Original</span></div>
         <input class="omega-range" type="range" min="0" max="20" step="1" value="10" aria-label="Omega for example 3">
       </div>
       <div class="omega-item" data-scene="4">
-        <div class="demo-viewer"><img alt="Example 4"><span class="demo-label">Original</span></div>
+        <div class="frame"><img alt="Example 4"><span class="demo-label">Original</span></div>
         <input class="omega-range" type="range" min="0" max="20" step="1" value="10" aria-label="Omega for example 4">
       </div>
     </div>
-    <div class="omega-legend">
-      <span><i class="fas fa-arrow-left"></i><i>ω</i> &gt; 0 &middot; smoother</span>
-      <span class="omega-legend-mid">middle = original</span>
-      <span><i>ω</i> &lt; 0 &middot; richer<i class="fas fa-arrow-right"></i></span>
-    </div>
+    <div class="legend mono"><span><i>ω</i> &gt; 0 smoother</span><span>middle = original</span><span><i>ω</i> &lt; 0 richer</span></div>
   </div>
+</section>
 
-  <div class="container is-max-desktop showcase-part" id="comparisons">
-    <p class="eyebrow">Before &amp; After</p>
-    <h2 class="title is-3 has-text-centered">Less or More, Your Choice</h2>
-
-    <div class="cmp" id="cmp">
-      <div class="cmp-pair">
+<section class="sec" id="comparisons">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="mono">02 Before &amp; After</div>
+      <h2>Less or More, Your Choice</h2>
+    </div>
+    <div id="cmp">
+      <div class="grid2">
         <div class="compare" data-kind="less">
           <img class="compare-base" alt="Less detail">
           <img class="compare-top" alt="Original">
           <span class="demo-label">Original</span>
-          <span class="demo-label compare-label-right">Less detail</span>
+          <span class="demo-label is-right">Less detail</span>
           <div class="compare-handle"><span></span></div>
           <input class="compare-range" type="range" min="0" max="100" step="0.1" value="50" aria-label="Comparison slider">
         </div>
@@ -154,64 +141,49 @@
           <img class="compare-base" alt="More detail">
           <img class="compare-top" alt="Original">
           <span class="demo-label">Original</span>
-          <span class="demo-label compare-label-right">More detail</span>
+          <span class="demo-label is-right">More detail</span>
           <div class="compare-handle"><span></span></div>
           <input class="compare-range" type="range" min="0" max="100" step="0.1" value="50" aria-label="Comparison slider">
         </div>
       </div>
-      <div class="demo-scenes" id="cmp-scenes"></div>
-      <p class="demo-hint">The left half of each view is the original output. Pick another example from the thumbnails.</p>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="video-section">
-  <div class="container is-max-desktop">
-    <p class="eyebrow">Video Generation</p>
-    <h2 class="title is-3 has-text-centered">Works on Video Diffusion, Too</h2>
-    <p class="has-text-centered section-subtitle">
-      The same <i>ω</i> drops straight into video diffusion models and reshapes granularity coherently over time.
-    </p>
-
-    <div class="video-case">
-      <p class="video-prompt">
-        <span class="model-tag">Latte</span>
-        "A cartoon panda in a sparkly bowtie performs a cheerful dance in a bamboo forest."
-      </p>
-      <div class="demo-pair">
-        <div class="demo-viewer">
-          <img src="imgs/t2v/202411091319_002.gif" alt="Latte original" loading="lazy">
-          <span class="demo-label">Original</span>
-        </div>
-        <div class="demo-viewer">
-          <img src="imgs/t2v/202411091324_002.gif" alt="Latte with Omegance" loading="lazy">
-          <span class="demo-label is-accent">Omegance</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="video-case">
-      <p class="video-prompt">
-        <span class="model-tag">AnimateDiff</span>
-        "A panda surfing in the ocean, realistic, high quality."
-      </p>
-      <div class="demo-pair">
-        <div class="demo-viewer">
-          <img src="imgs/t2v/202410251107_003.gif" alt="AnimateDiff original" loading="lazy">
-          <span class="demo-label">Original</span>
-        </div>
-        <div class="demo-viewer">
-          <img src="imgs/t2v/202410251114_003.gif" alt="AnimateDiff with Omegance" loading="lazy">
-          <span class="demo-label is-accent">Omegance</span>
-        </div>
+      <div class="cmp-foot">
+        <div class="demo-scenes" id="cmp-scenes"></div>
+        <p class="hint">The left half of each view is the original output. Pick another example from the thumbnails.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section section-tint" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title is-3 has-text-centered">BibTeX</h2>
+<section class="sec" id="video-section">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="mono">03 Video Generation</div>
+      <h2>Works on Video Diffusion, Too</h2>
+      <p>The same <i>ω</i> drops straight into video diffusion models and reshapes granularity coherently over time.</p>
+    </div>
+    <div class="case">
+      <div class="case-cap"><span class="mono">Latte</span><q>A cartoon panda in a sparkly bowtie performs a cheerful dance in a bamboo forest.</q></div>
+      <div class="grid2">
+        <div class="frame"><img src="imgs/t2v/202411091319_002.gif" alt="Latte original" loading="lazy"><span class="demo-label">Original</span></div>
+        <div class="frame"><img src="imgs/t2v/202411091324_002.gif" alt="Latte with Omegance" loading="lazy"><span class="demo-label is-accent">Omegance</span></div>
+      </div>
+    </div>
+    <div class="case">
+      <div class="case-cap"><span class="mono">AnimateDiff</span><q>A panda surfing in the ocean, realistic, high quality.</q></div>
+      <div class="grid2">
+        <div class="frame"><img src="imgs/t2v/202410251107_003.gif" alt="AnimateDiff original" loading="lazy"><span class="demo-label">Original</span></div>
+        <div class="frame"><img src="imgs/t2v/202410251114_003.gif" alt="AnimateDiff with Omegance" loading="lazy"><span class="demo-label is-accent">Omegance</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="BibTeX">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="mono">04 Citation</div>
+      <h2>BibTeX</h2>
+    </div>
     <div class="bibtex">
       <button class="copy-btn" id="copy-bibtex" aria-label="Copy BibTeX"><i class="far fa-copy"></i><span>Copy</span></button>
       <pre><code id="bibtex-code">@inproceedings{hou2025omegance,
@@ -224,26 +196,29 @@
   </div>
 </section>
 
-<footer class="footer" id="contact">
-  <div class="container is-max-desktop has-text-centered">
-    <h2 class="title is-3 has-text-centered">Contact</h2>
-    <p class="closing">
-      For questions about the paper or code, email Xinyu Hou
-      (<a href="mailto:xinyu.hou@ntu.edu.sg">xinyu.hou@ntu.edu.sg</a>) or file an
-      <a href="https://github.com/itsmag11/Omegance/issues" target="_blank">issue</a> in the repository.
-    </p>
-
-    <div class="star-cta">
-      <p>Enjoying Omegance? A star on GitHub goes a long way.</p>
-      <a class="star-cta-button" href="https://github.com/itsmag11/Omegance" target="_blank">
-        <i class="fab fa-github"></i><span>Star on GitHub</span>
-        <span class="star-cta-count" data-gh-stars hidden><i class="fas fa-star"></i><b></b></span>
-      </a>
+<footer id="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="mono">05 Contact</div>
+      <h2>Contact</h2>
     </div>
-
-    <p class="credit">
+    <div class="foot-row">
+      <p>
+        For questions about the paper or code, email Xinyu Hou
+        (<a href="mailto:xinyu.hou@ntu.edu.sg">xinyu.hou@ntu.edu.sg</a>) or file an
+        <a href="https://github.com/itsmag11/Omegance/issues" target="_blank">issue</a> in the repository.
+      </p>
+      <div>
+        <div>Enjoying Omegance? A star on GitHub goes a long way.</div>
+        <a class="star" href="https://github.com/itsmag11/Omegance" target="_blank">
+          <i class="fab fa-github"></i><span>Star on GitHub</span>
+          <span class="star-cta-count" data-gh-stars hidden><i class="fas fa-star"></i><b></b></span>
+        </a>
+      </div>
+    </div>
+    <p class="credit mono">
       Built on the <a href="https://github.com/nerfies/nerfies.github.io" target="_blank">Nerfies</a> website template
-      (<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a>).
+      (<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a>)
     </p>
   </div>
 </footer>
